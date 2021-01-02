@@ -3,14 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BusesComponent } from './buses/buses.component';
+import { MainComponent } from './main/main.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { DirectionsComponent } from './directions/directions.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BusesComponent,
+    MainComponent,
+    DirectionsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

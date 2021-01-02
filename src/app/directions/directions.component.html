@@ -1,0 +1,33 @@
+<section>
+    <div class="directions">
+        
+        <ng-container *ngIf="directions.length != 0; else directionsEmpty">
+            <div *ngFor="let direction of directions" class="direction__card">
+                <h3>{{direction.direction}}</h3>
+            </div>
+        </ng-container>
+    </div>
+    <hr>
+    <div class="create__direction">
+        <form (submit)="createDirection()">
+            <div class="direction__form_field">
+                <label for="directionFrom">Direction from</label>
+                <input type="text" name="directionFrom" name="directionFrom" [(ngModel)]="direction.directionFrom">
+            </div>
+            <div class="direction__form_field">
+                <label for="directionTo">Direction to</label>
+                <input type="text" name="directionTo" name="directionTo" [(ngModel)]="direction.directionTo">
+            </div>
+            <div class="direction__form_field">
+                <label for="distance">Distance</label>
+                <input type="number" name="distance" name="distance" [(ngModel)]="direction.distance">
+            </div>
+            <div>
+                <button type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+</section>
+<ng-template #directionsEmpty>
+    <h2>Directions are empty</h2>
+</ng-template>
