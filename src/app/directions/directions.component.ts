@@ -17,7 +17,7 @@ export class DirectionsComponent implements OnInit {
   }
 
   private getDirections(){
-    this.directionService.directions().subscribe(
+    this.directionService.getDirections().subscribe(
       res=>{
         if(res != null){
           this.directions = res;

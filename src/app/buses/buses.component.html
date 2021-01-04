@@ -1,11 +1,11 @@
 <section>
    <div class="buses">
         <ng-container *ngIf="buses.length != 0; else busesEmpty">
-            <div class="bus__card" *ngFor="let bus of buses">
+            <div *ngFor="let bus of buses">
                 <h3>{{bus?.busName}}</h3>
                 <h4>{{bus?.busBrand}}</h4>
 
-                <button (click)="checkDirections(bus, directions)">Show directions</button>
+                <!--<button (click)="checkDirections(bus, directions)">Show directions</button>-->
                 <ng-container *ngIf="showDirections && currentBusId == bus.id">
                     <div *ngFor="let direction of directionForBus">
                         <label>{{direction.distance}}</label>
@@ -33,9 +33,6 @@
                 <label for="busName">Number of seats</label>
                 <input type="input" id="numberOfSeats" name="numberOfSeats" [(ngModel)]="bus.numberOfSeats">
             </div>
-            <select multiple name="directions" [(ngModel)]="bus.directions">
-                <option *ngFor="let direction of directions" [ngValue]="direction">{{direction.directionFrom}} - {{direction.directionTo}}</option>
-            </select>
            
             <div>
                 <button type="submit">Create</button>

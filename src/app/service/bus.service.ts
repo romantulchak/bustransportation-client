@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
@@ -27,4 +27,5 @@ export class BusService{
     public addDirectionsForBus(busId:number, directions: Direction[]):Observable<any>{
         return this.http.put(API_URL + 'bus/addDirection/'+busId, directions);
     }
+   
 }

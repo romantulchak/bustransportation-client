@@ -34,7 +34,7 @@ export class BusesComponent implements OnInit {
     );
   }
   private getDirections(){
-    this.directionService.directions().subscribe(
+    this.directionService.getDirections().subscribe(
       res=>{
         if(res != null){
           this.directions = res;
@@ -68,15 +68,14 @@ export class BusesComponent implements OnInit {
       }
     );
   }
-  public checkDirections(bus: Bus, directions: Direction[]){
-    console.log(bus.directions);
+  /*public checkDirections(bus: Bus, directions: Direction[]){
+    console.log(bus);
     if(bus.directions.length == 0){
       this.directionForBus = directions;
-
     }else{
-    this.directionForBus = directions.filter(direction => bus.directions.some(busDirection => direction.id == busDirection.id));
+      this.directionForBus = directions.filter(direction => bus.directions.find(busDirection => direction.id == busDirection.id));
     }
-    console.log(this.directionForBus);
+ 
     
     this.directionsToAdd = [];
     if(bus.id == this.currentBusId){
@@ -86,4 +85,5 @@ export class BusesComponent implements OnInit {
     }
     this.currentBusId = bus.id; 
   } 
+  */
 }

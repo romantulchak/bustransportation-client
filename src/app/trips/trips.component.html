@@ -1,0 +1,40 @@
+<section>
+    <div>
+        <h2>Trips</h2>
+        <div>
+            <div *ngFor="let trip of trips" class="trip__card">
+                <h3>{{trip.direction.direction}}</h3>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+
+    <div>
+        <form (submit)="createTrip()">
+            <div>
+                <label for="bus">Bus</label>
+                <select name="bus" id="bus" [(ngModel)]="trip.bus">
+                    <option *ngFor="let bus of buses" [ngValue]="bus">{{bus.busName}}</option>
+                </select> 
+            </div>
+            <div>
+                <label for="direction">Direction</label>
+                <select name="direction" id="direction" [(ngModel)]="trip.direction">
+                    <option *ngFor="let direction of directions" [ngValue]="direction">{{direction.direction}}</option>
+                </select> 
+            </div>
+            <div>
+                <label for="date">Date</label>
+                <input type="datetime-local" [min]="currentDate |date:'yyyy-MM-ddTHH:mm'" name="date" id="date" [(ngModel)]="trip.date">
+            </div>
+            <div>
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price" [(ngModel)]="trip.price">
+            </div>
+            <div>
+                <button type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+</section>

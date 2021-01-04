@@ -7,6 +7,4 @@ export class Direction{
     public directionTo: string;
     public direction: string;
     public distance: number;
-    public seats: Seat[];
-    public bus: Bus;
 }

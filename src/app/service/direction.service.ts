@@ -13,7 +13,7 @@ const API_URL = environment.API_URL;
 export class DirectionService{
     constructor(private http: HttpClient){}
 
-    public directions():Observable<Direction[]>{
+    public getDirections():Observable<Direction[]>{
         return this.http.get<Direction[]>(API_URL + 'direction/directions');
     }
     public createDirection(direction: Direction):Observable<Direction>{

@@ -1,4 +1,4 @@
-import { Direction } from "./direction.model";
+import { Trip } from "./trip.model";
 
 
 export class Bus{
@@ -6,5 +6,5 @@ export class Bus{
     public busName: string;
     public busBrand: string;
     public numberOfSeats: number;
-    public directions: Direction[];
+    public trips: Trip[];
 }

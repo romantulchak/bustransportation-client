@@ -8,13 +8,17 @@ import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DirectionsComponent } from './directions/directions.component';
+import { BusCardComponent } from './bus-card/bus-card.component';
+import { TripsComponent } from './trips/trips.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BusesComponent,
     MainComponent,
-    DirectionsComponent
+    DirectionsComponent,
+    BusCardComponent,
+    TripsComponent
   ],
   imports: [
     BrowserModule,

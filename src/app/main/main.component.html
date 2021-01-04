@@ -1,1 +1,33 @@
-<p>main works!</p>
+<section>
+    <div>
+        <h4>Change direction</h4>
+        <form (submit)="searchDirection(date.value, numberOfSeats.value, directionFrom.value, directionTo.value)">
+            <div>
+                <Label for="directionFrom">From</Label>
+                <input type="text" name="from" #directionFrom>
+            </div>
+            <div>
+                <Label for="directionTo">To</Label>
+                <input type="text" name="from" #directionTo>
+            </div>
+            <div>
+                <Label for="date">Date</Label>
+                <input type="datetime-local" [min]="currentDate |date:'yyyy-MM-ddTHH:mm'" name="date" #date>
+            </div>
+            <div>
+                <Label for="numberOfSeats">Number of seats</Label>
+                <input type="number" min="1" name="numberOfSeats" #numberOfSeats>
+            </div>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <hr>
+    <div>
+        <div *ngFor="let trip of trips">
+            <h3>{{trip.bus.busName}}</h3>
+            <h4>{{trip.direction.direction}}</h4>   
+            <h4>Price: {{trip.price}}</h4> 
+            <button>Take it</button>
+        </div>
+    </div>
+</section>
