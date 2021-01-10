@@ -1,4 +1,7 @@
 <section>
+    <div class="menu">
+        <app-navbar></app-navbar>
+    </div>
     <div>
         <h4>Change direction</h4>
         <form (submit)="searchDirection(date.value, numberOfSeats.value, directionFrom.value, directionTo.value)">
@@ -10,6 +13,7 @@
                 <Label for="directionTo">To</Label>
                 <input type="text" name="from" #directionTo>
             </div>
+        
             <div>
                 <Label for="date">Date</Label>
                 <input type="datetime-local" [min]="currentDate |date:'yyyy-MM-ddTHH:mm'" name="date" #date>
@@ -27,7 +31,8 @@
             <h3>{{trip.bus.busName}}</h3>
             <h4>{{trip.direction.direction}}</h4>   
             <h4>Price: {{trip.price}}</h4> 
-            <button>Take it</button>
+            <h4>Free seats: {{trip.numberOfSeats}}</h4>
+            <a routerLink="/trip-details/{{trip.id}}">Take it</a>
         </div>
     </div>
 </section>

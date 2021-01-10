@@ -1,0 +1,53 @@
+<section>
+    <div class="container">
+        <div class="bus-container">
+            <div class="places">
+                
+                <label class="seat__box" *ngFor="let seat of seatFirstPart; let i = index">
+                    <input type="checkbox" (change)="addUserToSeat(seat)" [disabled]="seat.checked" [checked]="seat.checked">
+                    <span class="checkmark">{{seat.seatNumber}}</span>
+                </label>
+            </div>
+                
+            <div class="places">   
+                <label class="seat__box" *ngFor="let seat of seatSecondPart; let i = index">
+                    <input type="checkbox" (change)="addUserToSeat(seat)" [disabled]="seat.checked" [checked]="seat.checked">
+                    <span class="checkmark">{{seat.seatNumber}}</span>
+                </label>
+            </div>
+        </div>
+        
+        
+        <div  *ngIf="seatsToBuy.length != 0" class="users__summary">
+            <div class="users">
+                <div *ngFor="let u of seatsToBuy; let i = index" class="">
+                    <h3>Seat number: {{u.seatNumber}}</h3>
+                    <div class="user__form_card">
+                        <form>
+                            <div class="">
+                                <div>
+                                    <label for="firstName-{{i}}">First name</label>
+                                    <input type="text" name="firstName" id="firstName-{{i}}" [(ngModel)]="u.user.firstName">
+                                </div>
+                                <div>
+                                    <label for="lastName-{{i}}">Last name</label>
+                                    <input type="text" name="lastName-{{i}}" id="lastName-{{i}}" [(ngModel)]="u.user.lastName">
+                                </div>
+                                <div>
+                                    <label for="email-{{i}}">Email</label>
+                                    <input type="email" name="email-{{i}}" id="email-{{i}}" [(ngModel)]="u.user.email">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+            <hr>
+            <div class="seats__price_summary">
+                <h3 class="summary__price_text">Summary: {{summary}}</h3>
+                <button (click)="sendSeats()">Buy</button>
+            </div>
+        </div>
+    </div>
+</section>

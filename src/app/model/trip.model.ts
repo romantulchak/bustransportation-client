@@ -11,4 +11,7 @@ export class Trip{
     public seats: Seat[];
     
     public price: number;
+    constructor(id?:number){
+        this.id = id;
+    }
 }

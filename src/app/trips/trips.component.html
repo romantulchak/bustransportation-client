@@ -2,8 +2,9 @@
     <div>
         <h2>Trips</h2>
         <div>
-            <div *ngFor="let trip of trips" class="trip__card">
+            <div *ngFor="let trip of trips" class="trip__card" [class.done]="currentDate > trip.date">
                 <h3>{{trip.direction.direction}}</h3>
+                <em>{{trip.date | date:'dd-MM-yyyy HH:mm'}}</em>
             </div>
         </div>
         <hr>

@@ -1,0 +1,115 @@
+.bus-container{
+    width: 800px;
+    border: 3px rgb(58, 58, 58) solid;
+    border-radius: 10px;
+    background-color: #fff;
+    .places{
+        margin: 10px;
+        /*display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 1fr 1fr;*/
+        display: grid;
+        grid-template-columns: repeat(11, 4em);
+        &:first-child{
+            margin-bottom: 4em;
+        }
+    }
+    #place{
+        width: 50px;
+        height: 50px;
+        border: 2px rgb(44, 31, 31) solid;
+        border-radius: 5px;
+        background-color: rgba(129, 52, 252, 0.5);
+    }
+    .drivers-place{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(0, 0, 0);
+        width: 50px;
+        height: 50px;
+        border: 2px rgb(44, 31, 31) solid;
+        background-color: rgba(252, 198, 52, 0.5);
+    }
+    .seat__box {
+        display: block;
+        position: relative;
+        padding-left: 70px;
+        margin-bottom: 43px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        &:hover{
+            input{
+                &~.checkmark {
+                    background-color: rgb(156, 230, 141);
+                }  
+            }
+        }
+        input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+            &:checked{
+                &~.checkmark{
+                    background-color: #6933cc;
+                    &::after{
+                        display: block;
+                    }
+                }
+            }
+          }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 35px;
+            width: 35px;
+            background-color: rgb(83, 218, 78);
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: blanchedalmond;
+            &::after{
+                content: "";
+                position: absolute;
+                display: none;
+            }
+        }
+      }
+      
+}
+.users__summary{
+    
+    .users{
+    
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 1em;
+        .user__form_card{
+            max-width: 250px;
+            padding: 1em;
+            border: 1px solid;
+            box-sizing: border-box;
+            margin-top: 1em;
+            flex: 0 1 33%;
+            margin-right: 4em;
+        }
+    }
+    .seats__price_summary{
+        justify-content: flex-end;
+        display: flex;
+        flex-wrap: wrap;
+        .summary__price_text{
+            margin-right: 1em;
+        }
+    }
+}

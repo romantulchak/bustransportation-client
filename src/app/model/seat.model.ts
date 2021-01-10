@@ -7,4 +7,5 @@ export class Seat{
     public seatNumber: number;
     public user: User;  
     public trip: Trip;
+    public checked?:boolean = false;
 }

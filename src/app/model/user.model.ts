@@ -6,4 +6,10 @@ export class User{
     public lastName: string;
     public email: string;
     public seat: Seat;
+
+    constructor(){
+        this.firstName = "";
+        this.lastName = "";
+        this.email = "";
+    }
 }

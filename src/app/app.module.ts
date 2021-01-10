@@ -10,7 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { DirectionsComponent } from './directions/directions.component';
 import { BusCardComponent } from './bus-card/bus-card.component';
 import { TripsComponent } from './trips/trips.component';
-
+import { NavbarComponent } from './navbar/navbar.component';
+import { TripDetailsComponent } from './trip-details/trip-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,13 +20,16 @@ import { TripsComponent } from './trips/trips.component';
     MainComponent,
     DirectionsComponent,
     BusCardComponent,
-    TripsComponent
+    TripsComponent,
+    NavbarComponent,
+    TripDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
