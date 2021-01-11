@@ -21,6 +21,7 @@ export class TripDetailsComponent implements OnInit {
   public seatSecondPart: Seat[] = [];
   public seatsToBuy:Seat[] = [];
   public summary: number = 0;
+  public success: boolean = false;
   constructor(private router: ActivatedRoute, private tripService:TripService, private seatService:UserService) {
     router.params.subscribe(
       res=>{
@@ -46,10 +47,7 @@ export class TripDetailsComponent implements OnInit {
                        
             this.trip = res;
             this.seatFirstPart = res.seats.slice(0, (res.seats.length/2) + 1);
-            this.seatSecondPart = res.seats.slice(res.seats.length/2); 
-            console.log(res);
-            
-            
+            this.seatSecondPart = res.seats.slice(res.seats.length/2);    
           }else{
             window.location.href = "/";
           }
@@ -69,6 +67,7 @@ export class TripDetailsComponent implements OnInit {
   }
   public addUserToSeat(seat: Seat){
     let isSeatAdded = this.seatsToBuy.filter(x=>x.seatNumber == seat.seatNumber);
+    this.success = false;
     if(isSeatAdded.length == 0){
     let user = new User();
     seat.user = user;
@@ -81,11 +80,12 @@ export class TripDetailsComponent implements OnInit {
   }
 
   public sendSeats(){
-    console.log(this.seatsToBuy);
-    
     this.seatService.addUserToSeat(this.seatsToBuy, this.trip).subscribe(
       res=>{
-        console.log("Good");
+        this.seatsToBuy.map(x=>x.checked = true);
+        this.seatsToBuy = [];
+        this.success = true;
+        
       },
       error=>{
         console.log("Seats with number: " + error.error.message.length + " not available");

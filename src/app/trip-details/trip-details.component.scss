@@ -1,3 +1,12 @@
+$circle-size:60px;
+$color-green:#8f6;
+%cricle-shared{
+    content: "";
+  display: block;
+  height: 4px;
+  background: $color-green;
+  position: absolute;
+}
 .bus-container{
     width: 800px;
     border: 3px rgb(58, 58, 58) solid;
@@ -5,10 +14,6 @@
     background-color: #fff;
     .places{
         margin: 10px;
-        /*display: grid;
-        grid-gap: 10px;
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: 1fr 1fr;*/
         display: grid;
         grid-template-columns: repeat(11, 4em);
         &:first-child{
@@ -63,6 +68,10 @@
                         display: block;
                     }
                 }
+                &~.booked{
+                    cursor: default;
+                    background-color: #928aa2;
+                }
             }
           }
         .checkmark {
@@ -112,4 +121,62 @@
             margin-right: 1em;
         }
     }
+}
+
+.circle,
+.circle-border {
+  width: $circle-size;
+  height: $circle-size;
+  border-radius: 50%;
+}
+.circle {
+  z-index: 1;
+  position: relative;
+  background: white;
+  transform: scale(1);
+  animation: success-anim 700ms ease;
+  &::before{
+      @extend %cricle-shared;
+      width: 17px;
+      top: 58%;
+      left: 23%;
+      transform: rotateZ(50deg);
+  }
+  &::after{
+    @extend %cricle-shared;
+    width: 30px;
+    top: 50%;
+    left: 35%;
+    transform: rotateZ(-50deg);
+  }
+
+}
+.circle-border {
+  z-index: 0;
+  position: absolute;
+  background: #8f6;
+  transform: scale(1.1);
+  animation: circle-anim 400ms ease;
+}
+
+
+@keyframes success-anim {
+  0% {
+    transform: scale(0);
+  }
+  30% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes circle-anim {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
