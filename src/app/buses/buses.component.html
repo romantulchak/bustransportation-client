@@ -2,8 +2,8 @@
    <div class="buses">
         <ng-container *ngIf="buses.length != 0; else busesEmpty">
             <div *ngFor="let bus of buses">
-                <h3>{{bus?.busName}}</h3>
-                <h4>{{bus?.busBrand}}</h4>
+                <h3>{{bus?.name}}</h3>
+                <h4>{{bus?.brand}}</h4>
 
                 <!--<button (click)="checkDirections(bus, directions)">Show directions</button>-->
                 <ng-container *ngIf="showDirections && currentBusId == bus.id">
@@ -23,11 +23,11 @@
         <form (submit)="createBus()">
             <div class="bus__form_field">
                 <label for="busName">Bus name</label>
-                <input type="text" id="busName" name="busName" [(ngModel)]="bus.busName">
+                <input type="text" id="busName" name="busName" [(ngModel)]="bus.name">
             </div>
             <div class="bus__form_field">
                 <label for="busBrand">Bus brand</label>
-                <input type="text" id="busBrand" name="busBrand" [(ngModel)]="bus.busBrand">
+                <input type="text" id="busBrand" name="busBrand" [(ngModel)]="bus.brand">
             </div>
             <div class="bus__form_field">
                 <label for="busName">Number of seats</label>

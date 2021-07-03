@@ -1,0 +1,13 @@
+<nav>
+    <ul>
+        <li><a routerLink="/">Home</a></li>
+        <div *ngIf="showAuthLinks;else exit" class="registration">
+            <li><a routerLink="login">Login</a></li>
+            <li><a routerLink="registration">Registration</a></li>
+        </div>
+        <ng-template #exit>
+            <li><a routerLink="profile">Profile</a></li>
+            <li><button (click)="signOut()">Exit</button></li>
+        </ng-template>
+    </ul>
+</nav>

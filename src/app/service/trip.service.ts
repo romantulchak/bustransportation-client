@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { TripDTO } from "../dto/trip.dto";
 import { Trip } from "../model/trip.model";
 
 const API_URL = environment.API_URL;
@@ -13,17 +14,22 @@ export class TripService{
 
     }
 
-    public getTrips():Observable<Trip[]>{
-        return this.http.get<Trip[]>(API_URL + 'trip/trips');
+    public getTrips():Observable<TripDTO[]>{
+        return this.http.get<TripDTO[]>(API_URL + 'trip/trips');
     }
-    public createTrip(trip:Trip):Observable<Trip>{
-        return this.http.post<Trip>(API_URL + 'trip/createTrip', trip);
+    public createTrip(trip:Trip):Observable<TripDTO>{
+        return this.http.post<TripDTO>(API_URL + 'trip/createTrip', trip);
     }
-    public getTripsByDate(date:string, numberOfSeats: number, directionFrom:string, directionTo:string):Observable<Trip[]>{
+    public getTripsByDate(date:string, numberOfSeats: number, directionFrom:string, directionTo:string):Observable<TripDTO[]>{
         let params = new HttpParams();
         params = params.append('date', date).append('numberOfSeats', numberOfSeats.toString()).append('directionFrom', directionFrom).append('directionTo', directionTo);     
-        return this.http.get<Trip[]>(API_URL + 'trip/tripsByDate', {params: params});
+        return this.http.get<TripDTO[]>(API_URL + 'trip/tripsByDate', {params: params});
     }
+
+    public getTripsForUser():Observable<TripDTO[]>{
+        return this.http.get<TripDTO[]>(API_URL + 'trip/tripsForUser');
+    }
+
     public getTripById(id: number):Observable<Trip>{
         return this.http.get<Trip>(API_URL + 'trip/tripById/'+id);
     }

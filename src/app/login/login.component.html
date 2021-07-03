@@ -1,0 +1,15 @@
+<section>
+    <div>
+        <form>
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" [(ngModel)]="loginRequest.username"> 
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" [(ngModel)]="loginRequest.password"> 
+            </div>
+            <button (click)="login()">Login</button>
+        </form>
+    </div>
+</section>

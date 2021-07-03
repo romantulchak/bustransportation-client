@@ -20,12 +20,6 @@
                 </select> 
             </div>
             <div>
-                <label for="direction">Direction</label>
-                <select name="direction" id="direction" [(ngModel)]="trip.direction">
-                    <option *ngFor="let direction of directions" [ngValue]="direction">{{direction.direction}}</option>
-                </select> 
-            </div>
-            <div>
                 <label for="date">Date</label>
                 <input type="datetime-local" [min]="currentDate |date:'yyyy-MM-ddTHH:mm'" name="date" id="date" [(ngModel)]="trip.date">
             </div>

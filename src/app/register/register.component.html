@@ -1,0 +1,19 @@
+<section>
+    <div>
+        <form>
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" [(ngModel)]="registrationRequest.username"> 
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" [(ngModel)]="registrationRequest.email"> 
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" [(ngModel)]="registrationRequest.password"> 
+            </div>
+            <button (click)="registration()">Register</button>
+        </form>
+    </div>
+</section>

@@ -7,22 +7,31 @@ import { BusesComponent } from './buses/buses.component';
 import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { DirectionsComponent } from './directions/directions.component';
 import { BusCardComponent } from './bus-card/bus-card.component';
 import { TripsComponent } from './trips/trips.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { authInterceptorProviders } from './helper/auth.interceptor';
+import { NavComponent } from './nav/nav.component';
+import { CreateTripComponent } from './create-trip/create-trip.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UserTripsComponent } from './user-trips/user-trips.component';
 @NgModule({
   declarations: [
     AppComponent,
     BusesComponent,
     MainComponent,
-    DirectionsComponent,
     BusCardComponent,
     TripsComponent,
-    NavbarComponent,
-    TripDetailsComponent
+    TripDetailsComponent,
+    LoginComponent,
+    RegisterComponent,
+    NavComponent,
+    CreateTripComponent,
+    ProfileComponent,
+    UserTripsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

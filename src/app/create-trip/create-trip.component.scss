@@ -1,0 +1,8 @@
+.intermediate__places{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    .intermediate__place_card{
+        padding: 1em;
+        border: 1px solid black;
+    }
+}

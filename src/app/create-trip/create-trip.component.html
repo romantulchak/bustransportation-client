@@ -1,0 +1,78 @@
+<section>
+    <h3>Create trip</h3>
+    <form action="" [formGroup]="tripForm">
+        <div>
+            <label for="bus">Select bus</label>
+            <select formControlName="bus" name="bus" id="bus">
+                <option></option>
+                <option *ngFor="let bus of buses" [ngValue]="bus">{{bus.name}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="tripDate">Date of Trip</label>
+            <input type="datetime-local" id="tripDate" formControlName="date" required>
+        </div>
+
+        <div [formGroupName]="'direction'">
+            <div>
+                <label for="directionFrom">Direction From</label>
+                <input type="text" id="directionFrom" formControlName="directionFrom" required>
+            </div>
+            <div>
+                <label for="directionTo">Direction To</label>
+                <input type="text" id="directionTo" formControlName="directionTo" required>
+            </div>
+            <div>
+                <label for="distance">Distance in KM</label>
+                <input type="number" id="distance" formControlName="distance" required>
+            </div>
+        </div>
+        <div *ngIf="bus != null">
+            <label for="numberOfSeats">Number of Seats</label>
+            <input type="number" formControlName="numberOfSeats" id="numberOfSeats" [(ngModel)]="bus.numberOfSeats" required>
+        </div>
+
+        <div>
+            <label for="pricePerKm">Price per 100 km in UAH</label>
+            <input type="number" id="pricePerKm" formControlName="price">
+        </div>
+
+        <div>
+            <label for="tripType">Trip type</label>
+            <select name="tripType" id="tripType" formControlName="tripType">
+                <option [value]="'REGULAR'">REGULAR</option>
+                <option [value]="'IRREGULAR'">IRREGULAR</option>
+            </select>
+        </div>
+
+        <div [formArrayName]="'intermediatePlaces'">
+            <h3>Intermediate Places</h3>
+            <div class="intermediate__places">
+                <ng-container *ngFor="let intermediatePlace of intermediatePlaces.controls;let i = index">
+                    <div [formGroupName]="i">
+                        <div class="intermediate__place_card">
+                            <div>
+                                <label for="city-{{i}}">City</label>
+                                <input type="text" id="city-{{i}}" formControlName="city" required>
+                            </div>
+                            <div>
+                                <label for="dateAndTime-{{i}}">Date and time</label>
+                                <input type="datetime-local" id="dateAndTime-{{i}}" required formControlName="dateAndTime">
+                            </div>
+                            <div>
+                                <label for="price-{{i}}">Price</label>
+                                <input type="number" id="price-{{i}}" formControlName="price" required>
+                            </div>
+                            <button (click)="removeIntermediatePlace(i)">Remove</button>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <button (click)="addIntermediatePlace()">Add</button>
+        </div>
+        
+
+        <button (click)="create()">Create</button>
+    </form>
+    <pre>{{tripForm.value | json}}</pre>
+</section>

@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { Bus } from "../model/bus.model";
 import { retry } from 'rxjs/operators';
 import { Direction } from "../model/direction.model";
+import { BusDTO } from "../dto/bus.dto";
 
 const API_URL = environment.API_URL;
 @Injectable({
@@ -13,8 +14,8 @@ const API_URL = environment.API_URL;
 export class BusService{
     constructor(private http:HttpClient){}
 
-    public createBus(bus: Bus):Observable<Bus>{
-        return this.http.post<Bus>(API_URL + 'bus/createBus', bus).pipe(
+    public createBus(bus: Bus):Observable<BusDTO>{
+        return this.http.post<BusDTO>(API_URL + 'bus/createBus', bus).pipe(
             retry(15)
         );
     }
@@ -27,5 +28,8 @@ export class BusService{
     public addDirectionsForBus(busId:number, directions: Direction[]):Observable<any>{
         return this.http.put(API_URL + 'bus/addDirection/'+busId, directions);
     }
-   
+    
+    public getBusesForUser():Observable<BusDTO[]>{
+        return this.http.get<BusDTO[]>(`${API_URL}bus/findBusesForUser`);
+    }
 }

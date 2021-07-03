@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TripDTO } from '../dto/trip.dto';
 import { Trip } from '../model/trip.model';
 import { TripService } from '../service/trip.service';
 
@@ -9,7 +10,7 @@ import { TripService } from '../service/trip.service';
 })
 export class MainComponent implements OnInit {
 
-  public trips: Trip[];
+  public trips: TripDTO[];
   public currentDate = new Date();
   constructor(private tripService: TripService) { }
 
