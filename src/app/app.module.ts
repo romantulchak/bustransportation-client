@@ -18,6 +18,7 @@ import { NavComponent } from './nav/nav.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserTripsComponent } from './user-trips/user-trips.component';
+import { TripCityLineComponent } from './trip-city-line/trip-city-line.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { UserTripsComponent } from './user-trips/user-trips.component';
     NavComponent,
     CreateTripComponent,
     ProfileComponent,
-    UserTripsComponent
+    UserTripsComponent,
+    TripCityLineComponent
   ],
   imports: [
     BrowserModule,

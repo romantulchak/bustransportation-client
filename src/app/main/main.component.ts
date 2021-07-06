@@ -21,6 +21,8 @@ export class MainComponent implements OnInit {
     this.tripService.getTripsByDate(date, numberOfSeats, directionFrom, directionTo).subscribe(
       res=>{
         if(res != null){
+          console.log(res);
+          
             this.trips = res;
         }
       }

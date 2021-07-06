@@ -47,32 +47,34 @@ export class CreateTripComponent implements OnInit {
 
   private initForm(){
     this.tripForm = this.formBuilder.group({
-        date: ['', Validators.required],
         bus: [null, Validators.required],
-        direction: this.formBuilder.group({
-          directionFrom: ['', Validators.required],
-          directionTo: ['', Validators.required],
-          distance: [0, Validators.required]
-        }),
         numberOfSeats: [0, Validators.required],
+        name: ['', Validators.required],
+        departureCity: ['', Validators.required],
         tripType: [TripType[TripType.REGULAR], Validators.required],
-        price: [0, Validators.required],
-        intermediatePlaces: this.formBuilder.array([]),
+        cities: this.formBuilder.array([]),
         tripTemplates: null,
         creator: null
     });
   }
 
   public addIntermediatePlace(){
-    this.intermediatePlaces.push(this.formBuilder.group({
-      city: ['', Validators.required],
-      dateAndTime: [new Date(), Validators.required],
-      price: [0, Validators.required]
+    this.cities.push(this.formBuilder.group({
+      direction: this.formBuilder.group({
+        directionFrom: ['', Validators.required],
+        directionTo: ['', Validators.required],
+        distance: [0, Validators.required]
+      }),
+      price: [0, Validators.required],
+      dateOfDeparture: [new Date(), Validators.required],
+      dateOfArrival: [new Date(), Validators.required],
+      isBusStop: [true, Validators.required],
+      street: ['', Validators.required],
     }))
   }
 
   public removeIntermediatePlace(index: number){
-    this.intermediatePlaces.removeAt(index);
+    this.cities.removeAt(index);
   }
 
   get bus(){
@@ -91,8 +93,8 @@ export class CreateTripComponent implements OnInit {
     return this.tripForm.get('price').value;
   }
 
-  get intermediatePlaces(): FormArray{
-    return this.tripForm.get('intermediatePlaces') as FormArray;
+  get cities(): FormArray{
+    return this.tripForm.get('cities') as FormArray;
   }
 
   get direction(){

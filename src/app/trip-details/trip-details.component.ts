@@ -42,7 +42,7 @@ export class TripDetailsComponent implements OnInit {
     this.tripService.getTripById(this.tripId).subscribe(
       res=>{
         if(res != null){
-          if(this.tripValid(new Date(res.date))){
+          // if(this.tripValid(new Date(res.date))){
             res.seats.map(x=>x.checked = x.user != null);
                        
             this.trip = res;
@@ -53,7 +53,7 @@ export class TripDetailsComponent implements OnInit {
           }
           
         }
-      }
+      // }
     );
   }
 
@@ -72,10 +72,10 @@ export class TripDetailsComponent implements OnInit {
     let user = new User();
     seat.user = user;
     this.seatsToBuy.push(seat);
-    this.summary += this.trip.price;
+    // this.summary += this.trip.price;
     }else{
       this.seatsToBuy = this.seatsToBuy.filter(x=>x.id != seat.id);
-      this.summary -= this.trip.price;
+      // this.summary -= this.trip.price;
     }
   }
 

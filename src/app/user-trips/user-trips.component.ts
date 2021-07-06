@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CityDTO } from '../dto/city.dto';
+import { TripDTO } from '../dto/trip.dto';
+import { CityService } from '../service/city.service';
 import { TripService } from '../service/trip.service';
 
 @Component({
@@ -8,7 +11,11 @@ import { TripService } from '../service/trip.service';
 })
 export class UserTripsComponent implements OnInit {
 
-  constructor(private tripService: TripService) { }
+  public trips: TripDTO[];
+  public currentTripId: number;
+  public currentTrip: TripDTO = new TripDTO(); 
+  constructor(private tripService: TripService,
+              private cityService: CityService) { }
 
   ngOnInit(): void {
     this.getTripsForUser();
@@ -17,8 +24,17 @@ export class UserTripsComponent implements OnInit {
   private getTripsForUser(){
     this.tripService.getTripsForUser().subscribe(
       res=>{
-        console.log(res);
-        
+        this.trips = res;        
+      }
+    );
+  }
+
+  public showCities(trip: TripDTO){
+    this.cityService.getCitiesForTrip(trip.id).subscribe(
+      res=>{
+        this.currentTripId = trip.id;
+        this.currentTrip.cities = res;
+        this.currentTrip.departureCity = trip.departureCity;
       }
     );
   }

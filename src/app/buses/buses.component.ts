@@ -30,6 +30,7 @@ export class BusesComponent implements OnInit {
     this.busService.getBusesForUser().subscribe(
       res=>{
         if(res != null){
+        console.log(res);
           this.buses = res;   
         }
       }
@@ -37,7 +38,7 @@ export class BusesComponent implements OnInit {
   }
   public createBus(){
     this.busService.createBus(this.bus).subscribe(
-      res=>{
+      res=>{        
         this.buses.push(res);
       },
       error=>{

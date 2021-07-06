@@ -28,10 +28,10 @@
     <div>
         <div *ngFor="let trip of trips">
             <h3>{{trip.bus.busName}}</h3>
-            <h4>{{trip.direction.direction}}</h4>   
+            <h4>{{trip.direction.directionFrom}} - {{directionTo.value}}</h4>   
             <h4>Price: {{trip.price}}</h4> 
             <h4>Free seats: {{trip.numberOfSeats}}</h4>
-            <a routerLink="/trip-details/{{trip.id}}">Take it</a>
+            <a routerLink="trip/details/{{trip.id}}">Take it</a>
         </div>
     </div>
 </section>
