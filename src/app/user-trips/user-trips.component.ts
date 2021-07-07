@@ -33,8 +33,8 @@ export class UserTripsComponent implements OnInit {
     this.cityService.getCitiesForTrip(trip.id).subscribe(
       res=>{
         this.currentTripId = trip.id;
+        this.currentTrip = trip;
         this.currentTrip.cities = res;
-        this.currentTrip.departureCity = trip.departureCity;
       }
     );
   }

@@ -51,12 +51,7 @@ export class TripsComponent implements OnInit {
     this.tripService.getTrips().subscribe(
       res=>{
         if(res != null){
-          res.forEach(x=>x.date = new Date(x.date));
-          console.log(res[0].date);
-          console.log(this.currentDate);
-          
           this.trips = res;
-          
         }
       }
     );

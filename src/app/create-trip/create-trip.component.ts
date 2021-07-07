@@ -50,6 +50,7 @@ export class CreateTripComponent implements OnInit {
         bus: [null, Validators.required],
         numberOfSeats: [0, Validators.required],
         name: ['', Validators.required],
+        dateStart: ['', Validators.required],
         departureCity: ['', Validators.required],
         tripType: [TripType[TripType.REGULAR], Validators.required],
         cities: this.formBuilder.array([]),

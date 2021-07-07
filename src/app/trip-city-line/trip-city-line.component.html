@@ -1,12 +1,13 @@
     <div class="wrapper">
       <ul class="sessions">
         <li>
-            <div class="time">{{trip.cities[0].dateOfDeparture | date: 'dd-MM-yyyy HH:mm'}}</div>
+            <div class="time">{{trip.dateStart | date: 'dd-MM-yyyy HH:mm'}}</div>
             <p>{{trip.departureCity}}</p>
           </li>
         <li *ngFor="let city of trip.cities">
-          <div class="time">{{city.dateOfDeparture | date: 'dd-MM-yyyy HH:mm'}}</div>
+          <div class="time">{{city.dateOfArrival | date: 'dd-MM-yyyy HH:mm'}}</div>
           <p>{{city.direction.directionTo}}</p>
+          <span class="distance">{{city.direction.distance}} Km</span>
         </li>
       </ul>
     </div>

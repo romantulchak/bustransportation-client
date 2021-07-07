@@ -20,11 +20,6 @@ export class TripService{
     public createTrip(trip:Trip):Observable<TripDTO>{
         return this.http.post<TripDTO>(API_URL + 'trip/createTrip', trip);
     }
-    public getTripsByDate(date:string, numberOfSeats: number, directionFrom:string, directionTo:string):Observable<TripDTO[]>{
-        let params = new HttpParams();
-        params = params.append('date', date).append('numberOfSeats', numberOfSeats.toString()).append('directionFrom', directionFrom).append('directionTo', directionTo);     
-        return this.http.get<TripDTO[]>(API_URL + 'trip/tripsByDate', {params: params});
-    }
 
     public getTripsForUser():Observable<TripDTO[]>{
         return this.http.get<TripDTO[]>(API_URL + 'trip/tripsForUser');

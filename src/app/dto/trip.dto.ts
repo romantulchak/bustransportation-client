@@ -5,7 +5,7 @@ import { CityDTO } from "./city.dto";
 
 export class TripDTO{
     public id: number;
-    public date: Date;
+    public dateStart: Date;
     public direction: Direction;
     public bus: Bus;
     public numberOfSeats: number;

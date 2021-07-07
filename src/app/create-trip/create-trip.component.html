@@ -23,6 +23,10 @@
             <input type="number" formControlName="numberOfSeats" id="numberOfSeats" [(ngModel)]="bus.numberOfSeats" required>
         </div>
 
+        <div>
+            <label for="mainDateOfDeparture">Date of departure from Main city</label>
+            <input type="datetime-local" formControlName="dateStart" id="mainDateOfDeparture" required>
+        </div>
 
         <div>
             <label for="tripType">Trip type</label>
@@ -41,6 +45,7 @@
                             <div [formGroupName]="'direction'">
                                 <div>
                                     <label for="directionFrom-{{i}}">Direction From</label>
+                                    <div>If necessary, otherwise will be setted main city</div>
                                     <input type="text" id="directionFrom-{{i}" formControlName="directionFrom" required>
                                 </div>
                                 <div>
@@ -54,6 +59,7 @@
                             </div>
                             <div>
                                 <label for="dateOfDeparture-{{i}}">Date of departure</label>
+                                <div>If necessary, otherwise will be setted <b>Date of departure for Main City</b></div>
                                 <input type="datetime-local" id="dateOfDeparture-{{i}}" required formControlName="dateOfDeparture">
                             </div>
                             <div>
