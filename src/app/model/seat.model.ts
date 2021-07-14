@@ -5,7 +5,6 @@ import { User } from "./user.model";
 export class Seat{
     public id: number;
     public seatNumber: number;
-    public user: User;  
+    public users: User[];  
     public trip: Trip;
-    public checked?:boolean = false;
 }

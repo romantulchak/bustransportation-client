@@ -1,67 +1,56 @@
 <section>
     <div class="container">
-        <div class="bus-container">
-            <div class="places">
-
-                <label class="seat__box" *ngFor="let seat of seatFirstPart; let i = index">
-                    <input type="checkbox" (change)="addUserToSeat(seat)" [disabled]="seat.checked"
-                        [checked]="seat.checked">
-                    <span class="checkmark" [class.booked]="seat.checked">{{seat.seatNumber}}</span>
-                </label>
-            </div>
-
-            <div class="places">
-                <label class="seat__box" *ngFor="let seat of seatSecondPart; let i = index">
-                    <input type="checkbox" (change)="addUserToSeat(seat)" [disabled]="seat.checked"
-                        [checked]="seat.checked">
-                    <span class="checkmark" [class.booked]="seat.checked">{{seat.seatNumber}}</span>
-                </label>
-            </div>
-        </div>
-
-
-        <ng-container *ngIf="!success;">
-            <div *ngIf="seatsToBuy.length != 0" class="users__summary">
-                <div class="users">
-                    <div *ngFor="let u of seatsToBuy; let i = index" class="">
-                        <h3>Seat number: {{u.seatNumber}}</h3>
-                        <div class="user__form_card">
-                            <form>
-                                <div class="">
-                                    <div>
-                                        <label for="firstName-{{i}}">First name</label>
-                                        <input type="text" name="firstName" id="firstName-{{i}}"
-                                            [(ngModel)]="u.user.firstName">
-                                    </div>
-                                    <div>
-                                        <label for="lastName-{{i}}">Last name</label>
-                                        <input type="text" name="lastName-{{i}}" id="lastName-{{i}}"
-                                            [(ngModel)]="u.user.lastName">
-                                    </div>
-                                    <div>
-                                        <label for="email-{{i}}">Email</label>
-                                        <input type="email" name="email-{{i}}" id="email-{{i}}"
-                                            [(ngModel)]="u.user.email">
-                                    </div>
+       <div class="bus-container">
+          <div class="places">
+             <label class="seat__box" *ngFor="let seat of seatFirstPart; let i = index">
+             <input type="checkbox" (change)="addSeat(seat, i)" [disabled]="seat.checked" [checked]="seat.addedToCard">
+             <span class="checkmark" [class.booked]="seat.checked">{{seat.seatNumber}}</span>
+             </label>
+          </div>
+          <div class="places">
+             <label class="seat__box" *ngFor="let seat of seatSecondPart; let i = index">
+             <input type="checkbox" (change)="addSeat(seat, i)" [disabled]="seat.checked" [checked]="seat.addedToCard">
+             <span class="checkmark" [class.booked]="seat.checked">{{seat.seatNumber}}</span>
+             </label>
+          </div>
+       </div>
+       <ng-container>
+             <form [formGroup]="seatForm">
+                   <div [formArrayName]="'seats'">
+                      <h3>Intermediate Places</h3>
+                         <div class="user__form">
+                            <ng-container *ngFor="let seat of seats.controls;let i = index">
+                                <div class="user__form_card" [formGroupName]="i">
+                                 <h4>Seat number: {{seat.value.number}}</h4>
+                                 <div class="intermediate__place_card">
+                                       <button (click)="removeSeat(i)">Remove</button>
+                                      <div>
+                                         <label for="firstName-{{i}}">First Name</label>
+                                         <input type="text" id="firstName-{{i}" formControlName="firstName" required>
+                                      </div>
+                                      <div>
+                                         <label for="lastName-{{i}">Last Name</label>
+                                         <input type="text" id="lastName-{{i}" formControlName="lastName" required>
+                                      </div>
+                                      <div>
+                                         <label for="email-{{i}">Email</label>
+                                         <input type="email" id="email-{{i}" formControlName="email" required>
+                                      </div>
+                                   </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                             </ng-container>
+                         </div>
+                      </div>
+             </form>
+             <h4>Total price: {{summary}}</h4>
+       </ng-container>
 
-                <hr>
-                <div class="seats__price_summary">
-                    <h3 class="summary__price_text">Summary: {{summary}}</h3>
-                    <button (click)="sendSeats()">Buy</button>
-                </div>
-            </div>
-        </ng-container>
-        <ng-template [ngIf]="success">
-            <h3>Bus seats successfully booked</h3>
-            <div class="circle-border"></div>
-            <div class="circle">
-                <div class="success"></div>
-            </div>
-        </ng-template>
+       <ng-template [ngIf]=" success">
+          <h3>Bus seats successfully booked</h3>
+          <div class="circle-border"></div>
+          <div class="circle">
+             <div class="success"></div>
+          </div>
+       </ng-template>
     </div>
-</section>
+ </section>

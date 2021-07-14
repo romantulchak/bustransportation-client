@@ -71,6 +71,7 @@ export class CreateTripComponent implements OnInit {
       dateOfArrival: [new Date(), Validators.required],
       isBusStop: [true, Validators.required],
       street: ['', Validators.required],
+      fromMainCity: ['', Validators.required]
     }))
   }
 

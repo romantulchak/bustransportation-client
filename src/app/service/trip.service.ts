@@ -28,4 +28,8 @@ export class TripService{
     public getTripById(id: number):Observable<Trip>{
         return this.http.get<Trip>(API_URL + 'trip/tripById/'+id);
     }
+
+    public findTripByCityId(cityId: number): Observable<TripDTO>{
+        return this.http.get<TripDTO>(`${API_URL}trip/getTripByCity/${cityId}`);
+    }
 }

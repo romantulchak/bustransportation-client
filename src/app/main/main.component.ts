@@ -24,6 +24,8 @@ export class MainComponent implements OnInit {
       res=>{
         if(res != null){
           this.trips = res;
+          console.log(res);
+          
         }
       }
     );
