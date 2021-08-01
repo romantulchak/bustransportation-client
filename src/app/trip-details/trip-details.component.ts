@@ -4,8 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CityDTO } from '../dto/city.dto';
 import { SeatDTO } from '../dto/seat.dto';
 import { TripDTO } from '../dto/trip.dto';
+import { Booking } from '../model/booking.model';
 import { Seat } from '../model/seat.model';
 import { User } from '../model/user.model';
+import { BookingService } from '../service/booking.service';
+import { CityService } from '../service/city.service';
 
 import { TripService } from '../service/trip.service';
 import { UserService } from '../service/user.service';
@@ -29,7 +32,8 @@ export class TripDetailsComponent implements OnInit {
   public allSeats: SeatDTO[];
   constructor(private router: ActivatedRoute, 
               private tripService:TripService, 
-              private seatService:UserService,
+              private cityService: CityService,
+              private bookinService: BookingService,
               private fb: FormBuilder) {
     router.params.subscribe(
       res=>{
@@ -47,12 +51,23 @@ export class TripDetailsComponent implements OnInit {
     // }
     this.initSeatForm();
     this.findTripByCityId();
+    this.findCityById();
+  }
+
+  private findCityById(){
+    this.cityService.getCityById(this.cityId).subscribe(
+      res=>{
+        this.city = res;
+      }
+    );
   }
 
   private findTripByCityId(){
     this.tripService.findTripByCityId(this.cityId).subscribe(
       res => {
-        res.seats.map(x=>x.checked = x.users.length != 0);
+        console.log(res);
+        //&& x.bookings.find(booking => booking.city.direction.directionFrom === this.city.direction.directionFrom) != null
+        res.seats.map(x=>x.checked = x.bookings.length != 0);
         res.seats.map(x=>x.addedToCard = false);
         this.allSeats = res.seats;
         this.seatFirstPart = this.allSeats.slice(0, (res.seats.length/2) + 1);
@@ -71,7 +86,7 @@ export class TripDetailsComponent implements OnInit {
 
   public addSeat(seat: SeatDTO, index: number){
     this.seats.push(this.fb.group({
-      number: [seat.seatNumber, Validators.required],
+      seat: [seat, Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required]
@@ -85,7 +100,7 @@ export class TripDetailsComponent implements OnInit {
   }
 
   public removeSeat(index?: number){
-    let seat = this.allSeats.find(seat => seat.seatNumber === this.seats.value[index].number);
+    let seat = this.allSeats.find(seat => seat.seatNumber === this.seats.value[index].seat.number);
     seat.addedToCard = false;
     this.summary -= this.city.price;
     this.seats.removeAt(index);
@@ -125,6 +140,21 @@ export class TripDetailsComponent implements OnInit {
     
   }
 
+  public buySeats(){
+    let bookings: Booking[] = [];
+    this.seats.value.forEach(seat => {
+      let booking = new Booking();
+      booking.id = null;
+      booking.city = null; 
+      bookings.push(Object.assign(booking, seat));
+    });
+    this.bookinService.bookPlaces(bookings, this.cityId).subscribe(
+      res=>{
+        console.log("OK");
+        
+      }
+    );
+  }
   // public sendSeats(){
   //   this.seatService.addUserToSeat(this.seatsToBuy, this.trip).subscribe(
   //     res=>{

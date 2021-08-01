@@ -1,0 +1,118 @@
+$iconSize: 16px;
+
+.header__container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+section {
+  background-image: url('../../assets/images/header/header-background.png');
+  height: 675px;
+  background-size: cover;
+  background-position: initial;
+
+  header {
+    font-family: Raleway;
+    padding-top: 35px;
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .nav__panel_right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style-type: none;
+
+        li {
+          &:not(:last-child) {
+            margin-right: 40px;
+          }
+
+          .link__icon {
+            align-items: center;
+            color: #131D17;
+            text-decoration: none;
+            display: flex;
+
+            span {
+              font-weight: 600;
+            }
+
+            img {
+              height: $iconSize;
+              width: $iconSize;
+              margin-right: 7px;
+            }
+
+            .down__arrow {
+              width: 12px;
+              margin-left: 5px;
+              height: 12px;
+            }
+          }
+        }
+      }
+    }
+
+    .header__title {
+      text-align: center;
+      margin-top: 12em;
+
+      .title {
+        font-weight: 900;
+        font-style: normal;
+        font-size: 48px;
+        color: #fff;
+        margin-bottom: 5px;
+      }
+
+      h4 {
+        font-weight: 500;
+        font-style: normal;
+        font-size: 24px;
+        color: #fff;
+      }
+    }
+
+    .search__form_button {
+      display: flex;
+      justify-content: space-between;
+      height: 73px;
+      margin-top: 45px;
+      .search__form {
+        width: 85%;
+        background: rgba(255, 255, 255, 0.55);
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        form{
+          .form__fields{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            align-items: center;
+          }
+        }
+        
+      }
+      .form__button{
+        height: 100%;
+        button{
+          height: 100%;
+          background: #BA0345;
+          border: none;
+          width: 174px;
+          font-family: Raleway;
+          border-radius: 11px;
+          font-weight: 700;
+          font-size: 20px;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+}

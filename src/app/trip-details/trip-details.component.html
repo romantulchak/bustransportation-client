@@ -10,7 +10,7 @@
           <div class="places">
              <label class="seat__box" *ngFor="let seat of seatSecondPart; let i = index">
              <input type="checkbox" (change)="addSeat(seat, i)" [disabled]="seat.checked" [checked]="seat.addedToCard">
-             <span class="checkmark" [class.booked]="seat.checked">{{seat.seatNumber}}</span>
+             <span class="checkmark"  [class.booked]="seat.checked">{{seat.seatNumber}}</span>
              </label>
           </div>
        </div>
@@ -41,9 +41,11 @@
                              </ng-container>
                          </div>
                       </div>
+                      <button *ngIf="seats.value.length != 0" (click)="buySeats()">Buy seats</button>
              </form>
              <h4>Total price: {{summary}}</h4>
        </ng-container>
+       <pre>{{seatForm.value | json}}</pre>
 
        <ng-template [ngIf]=" success">
           <h3>Bus seats successfully booked</h3>

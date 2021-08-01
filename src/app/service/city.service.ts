@@ -17,6 +17,10 @@ export class CityService {
     return this.http.get<CityDTO[]>(`${API_URL}city/citesForTrip/${tripId}`);
   }
 
+  public getCityById(id: number):Observable<CityDTO>{
+    return this.http.get<CityDTO>(`${API_URL}city/getCityById/${id}`);
+  }
+
   public getCityTrips(date:string, numberOfSeats: number, directionFrom:string, directionTo:string){
     let params = new HttpParams();
     params = params.append('date', date)

@@ -75,17 +75,22 @@ $color-green:#8f6;
         &~.checkmark {
           background-color: #6933cc;
           pointer-events: none;
+
           &::after {
             display: block;
           }
         }
+      }
 
-        &~.booked {
-          cursor: default;
-          background-color: #928aa2;
+      &:disabled {
+        &~.booked{
+        cursor: default;
+        background-color: #928aa2;
         }
       }
-    }
+  }
+
+
 
     .checkmark {
       position: absolute;
@@ -110,9 +115,10 @@ $color-green:#8f6;
 
 }
 
-.user__form{
+.user__form {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+
   .user__form_card {
     max-width: 250px;
     padding: 1em;
