@@ -43,17 +43,20 @@
                 <div class="search__form">
                     <form (submit)="searchDirection(date.value, numberOfSeats.value, directionFrom.value, directionTo.value)">
                         <div class="form__fields">
-                            <div>
+                            <div class="form__field">
                                 <input type="text" name="from" placeholder="from" #directionFrom >
+                                <img class="field__img_right" src="../../assets/images/header/direction.svg" alt="">
                             </div>
-                            <div>
+                            <div class="form__field">
                                 <input type="text" name="from" placeholder="To" #directionTo>
                             </div>
-                            <div>
-                                <input type="datetime-local" [min]="currentDate |date:'yyyy-MM-ddTHH:mm'" name="date" placeholder="Date" #date>
+                            <div class="form__field">
+                                <img class="field__img_left" src="../../assets/images/header/calendar.svg" alt="">
+                                <input type="text" [min]="currentDate |date:'yyyy-MM-ddTHH:mm'" name="date" placeholder="Date" #date>
                             </div>
-                            <div>
-                                <input type="number" min="1" name="numberOfSeats" placeholder="Number of seats" #numberOfSeats>
+                            <div class="form__field">
+                                <img class="field__img_left" src="../../assets/images/header/user.svg" alt="">
+                                <input type="text" min="1" name="numberOfSeats" placeholder="Number of seats" #numberOfSeats>
                             </div>
                         </div>
                     </form>
