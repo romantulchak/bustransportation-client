@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CityDTO } from '../dto/city.dto';
 
@@ -10,6 +10,8 @@ const API_URL = environment.API_URL;
   providedIn: 'root'
 })
 export class CityService {
+
+  public trips: BehaviorSubject<CityDTO[]> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) { }
 

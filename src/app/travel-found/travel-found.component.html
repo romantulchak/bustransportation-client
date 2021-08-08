@@ -1,0 +1,9 @@
+<div *ngIf="trips != null">
+    <div *ngFor="let trip of trips">
+        <!-- <h3>{{trip.bus.busName}}</h3> -->
+        <h4>{{trip.direction.directionFrom}} - {{trip.direction.directionTo}}</h4>   
+        <h4>Price: {{trip.price}}</h4> 
+        <!-- <h4>Free seats: {{trip.numberOfSeats}}</h4> -->
+        <a routerLink="../trip/details/{{trip.id}}">Take it</a>
+    </div>
+</div>

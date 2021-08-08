@@ -1,8 +1,51 @@
-.menu{
-    background: url('../../assets/background-main.jpg');
-    height: 200px;
-    background-size: cover;
-    background-position-y: 75%;
-    padding-top: 124px;
-    padding-bottom: 56px;
+.menu {
+  background: url('../../assets/background-main.jpg');
+  height: 200px;
+  background-size: cover;
+  background-position-y: 75%;
+  padding-top: 124px;
+  padding-bottom: 56px;
+}
+
+.container {
+  max-width: 1560px;
+  margin: 0 auto;
+}
+
+.privileges__section {
+  height: 500px;
+
+  .privileges {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+
+    .privilege {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      flex-wrap: wrap;
+      width: 185px;
+      height: 210px;
+      align-items: center;
+      font-family: Raleway;
+
+      .title {
+        font-weight: 700;
+        font-size: 20px;
+        margin-bottom: 12px;
+        color: #262F22;
+      }
+
+      .description {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      img {
+        margin-bottom: 25px;
+      }
+    }
+  }
 }

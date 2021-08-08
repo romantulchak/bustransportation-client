@@ -62,12 +62,12 @@ export class CreateTripComponent implements OnInit {
   public addIntermediatePlace(){
     this.cities.push(this.formBuilder.group({
       direction: this.formBuilder.group({
-        directionFrom: ['', Validators.required],
+        directionFrom: [this.tripForm.get('departureCity').value, Validators.required],
         directionTo: ['', Validators.required],
         distance: [0, Validators.required]
       }),
       price: [0, Validators.required],
-      dateOfDeparture: [new Date(), Validators.required],
+      dateOfDeparture: [this.tripForm.get('dateStart').value, Validators.required],
       dateOfArrival: [new Date(), Validators.required],
       isBusStop: [true, Validators.required],
       street: ['', Validators.required],

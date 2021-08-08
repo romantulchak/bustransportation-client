@@ -50,7 +50,7 @@
                                 </div>
                                 <div>
                                     <label for="directionTo-{{i}">Direction To</label>
-                                    <input type="text" id="directionTo-{{i}" formControlName="directionTo" required>
+                                    <input type="text"  id="directionTo-{{i}" formControlName="directionTo" required>
                                 </div>
                                 <div>
                                     <label for="distance-{{i}">Distance in KM</label>
@@ -83,7 +83,7 @@
                     </div>
                 </ng-container>
             </div>
-            <button (click)="addIntermediatePlace()">Add</button>
+            <button *ngIf="tripForm.get('departureCity').value != '' && tripForm.get('dateStart').value != ''" (click)="addIntermediatePlace()">Add</button>
         </div>
         
 

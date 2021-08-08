@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CityDTO } from '../dto/city.dto';
 import { UserDTO } from '../dto/user.dto';
 import { CityService } from '../service/city.service';
@@ -12,12 +13,12 @@ import { TokenStorageService } from '../service/token-storage.service';
 export class HeaderComponent implements OnInit {
 
   public user: UserDTO;
-  public trips: CityDTO[];
   public currentDate = new Date();
 
 
   constructor(private tokenStorageService: TokenStorageService, 
-              private cityService: CityService) { }
+              private cityService: CityService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.user = this.tokenStorageService.getUser();
@@ -30,13 +31,13 @@ export class HeaderComponent implements OnInit {
 
 
   public searchDirection(date: string, numberOfSeats:number,directionFrom: string, directionTo:string){
-    
     this.cityService.getCityTrips(date, numberOfSeats, directionFrom, directionTo).subscribe(
       res=>{
         if(res != null){
-          this.trips = res;
-          console.log(res);
-          
+          this.cityService.trips.next(res);
+          if(res){
+            this.router.navigateByUrl('trips-found');
+          }
         }
       }
     );

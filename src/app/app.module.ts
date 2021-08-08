@@ -20,6 +20,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserTripsComponent } from './user-trips/user-trips.component';
 import { TripCityLineComponent } from './trip-city-line/trip-city-line.component';
 import { HeaderComponent } from './header/header.component';
+import {DpDatePickerModule} from 'ng2-date-picker';
+import { TravelFoundComponent } from './travel-found/travel-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,14 +37,16 @@ import { HeaderComponent } from './header/header.component';
     ProfileComponent,
     UserTripsComponent,
     TripCityLineComponent,
-    HeaderComponent
+    HeaderComponent,
+    TravelFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DpDatePickerModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

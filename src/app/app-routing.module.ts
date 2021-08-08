@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { RegistrationRequest } from './request/registration.request';
+import { TravelFoundComponent } from './travel-found/travel-found.component';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { TripsComponent } from './trips/trips.component';
 import { UserTripsComponent } from './user-trips/user-trips.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [LoginRegisterGuard]},
   {path: 'registration', component: RegisterComponent, canActivate: [LoginRegisterGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard]},
+  {path: 'trips-found', component: TravelFoundComponent},
   {path: 'trip', children:[
     {path: 'create-trip', component: CreateTripComponent},
     {path: 'trips', component: TripsComponent},
