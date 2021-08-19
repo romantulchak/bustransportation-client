@@ -22,6 +22,7 @@ import { TripCityLineComponent } from './trip-city-line/trip-city-line.component
 import { HeaderComponent } from './header/header.component';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import { TravelFoundComponent } from './travel-found/travel-found.component';
+import { TicketsComponent } from './tickets/tickets.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { TravelFoundComponent } from './travel-found/travel-found.component';
     TripCityLineComponent,
     HeaderComponent,
     TravelFoundComponent,
+    TicketsComponent,
   ],
   imports: [
     BrowserModule,

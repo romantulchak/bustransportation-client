@@ -12,7 +12,7 @@ export class NavComponent implements OnInit {
   constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
-    this.showAuthLinks = !this.tokenStorageService.getUser();
+    this.showAuthLinks = this.tokenStorageService.getUser();
     
   }
 

@@ -1,10 +1,5 @@
 $iconSize: 16px;
 
-.header__container {
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
 section {
   background-image: url('../../assets/images/header/header-background.png');
   height: 675px;
@@ -14,49 +9,6 @@ section {
   header {
     font-family: Raleway;
     padding-top: 35px;
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-
-      .nav__panel_right {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        list-style-type: none;
-
-        li {
-          &:not(:last-child) {
-            margin-right: 40px;
-          }
-
-          .link__icon {
-            align-items: center;
-            color: #131D17;
-            text-decoration: none;
-            display: flex;
-
-            span {
-              font-weight: 600;
-            }
-
-            img {
-              height: $iconSize;
-              width: $iconSize;
-              margin-right: 7px;
-            }
-
-            .down__arrow {
-              width: 12px;
-              margin-left: 5px;
-              height: 12px;
-            }
-          }
-        }
-      }
-    }
 
     .header__title {
       text-align: center;

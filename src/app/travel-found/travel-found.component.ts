@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CityDTO } from '../dto/city.dto';
 import { CityService } from '../service/city.service';
 
@@ -10,7 +11,8 @@ import { CityService } from '../service/city.service';
 export class TravelFoundComponent implements OnInit {
 
   public trips: CityDTO[];
-  constructor(private cityService: CityService) { }
+  constructor(private cityService: CityService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getFoundTrips();
@@ -20,7 +22,9 @@ export class TravelFoundComponent implements OnInit {
     this.cityService.trips.subscribe(
       res=>{
         this.trips = res;
-        
+        if(res === null || res === undefined){
+          this.router.navigateByUrl('/');
+        }
       }
     );
   }

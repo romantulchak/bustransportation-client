@@ -12,6 +12,11 @@
     margin: 0 auto;
 }
 
+.header__container {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
 @media screen and (max-width: 1366px){
     .container{
         max-width: 1280px;

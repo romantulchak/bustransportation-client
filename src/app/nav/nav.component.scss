@@ -1,0 +1,45 @@
+$iconSize: 16px;
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-family: Raleway;
+    padding-top: 25px;
+    .nav__panel_right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      list-style-type: none;
+
+      li {
+        &:not(:last-child) {
+          margin-right: 40px;
+        }
+
+        .link__icon {
+          align-items: center;
+          color: #131D17;
+          text-decoration: none;
+          display: flex;
+
+          span {
+            font-weight: 600;
+          }
+
+          img {
+            height: $iconSize;
+            width: $iconSize;
+            margin-right: 7px;
+          }
+
+          .down__arrow {
+            width: 12px;
+            margin-left: 5px;
+            height: 12px;
+          }
+        }
+      }
+    }
+  }

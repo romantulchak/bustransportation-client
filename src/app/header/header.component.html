@@ -1,39 +1,7 @@
 <section>
     <header>
         <div class="header__container">
-            <nav>
-                <div>
-                    <img src="../../assets/images/header/logo.svg" alt="logo">
-                </div>
-                <ul class="nav__panel_right">
-                    <li>
-                        <a routerLink="" class="link__icon">
-                            <img src="../../assets/images/header/online-support.svg" alt="online support">
-                            <span>Online support</span>
-                        </a>
-                    </li>
-                    <ng-container *ngIf="user === null || user === undefined;else profile">
-                        <li><a routerLink="login" class="link__icon"><span>Login</span></a></li>
-                        <li><a routerLink="registration" class="link__icon"><span>Registration</span></a></li>
-                    </ng-container>
-                    <ng-template #profile>
-                        <li>
-                            <a routerLink="profile" class="link__icon">
-                                <img src="../../assets/images/header/profile.svg" alt="profile">
-                                <span>Profile</span>
-                            </a>
-                        </li>
-                        <li><button (click)="signOut()">Exit</button></li>
-                    </ng-template>
-                    <li>
-                        <div class="link__icon">
-                            <img src="../../assets/images/header/united-states.svg" alt="flag">
-                            <span>EN</span>
-                            <img src="../../assets/images/header/down-arrow.svg" class="down__arrow" alt="down arrow">
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+            <app-nav></app-nav>
             <div class="header__title">
                 <h1 class="title">Bus tickets</h1>
                 <h4>in Ukraine, Poland and all over Europe</h4>

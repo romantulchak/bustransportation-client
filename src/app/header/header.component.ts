@@ -12,7 +12,6 @@ import { TokenStorageService } from '../service/token-storage.service';
 })
 export class HeaderComponent implements OnInit {
 
-  public user: UserDTO;
   public currentDate = new Date();
 
 
@@ -21,14 +20,7 @@ export class HeaderComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.user = this.tokenStorageService.getUser();
   }
-
-  public signOut(){
-    this.tokenStorageService.signOut();
-  }
-
-
 
   public searchDirection(date: string, numberOfSeats:number,directionFrom: string, directionTo:string){
     this.cityService.getCityTrips(date, numberOfSeats, directionFrom, directionTo).subscribe(

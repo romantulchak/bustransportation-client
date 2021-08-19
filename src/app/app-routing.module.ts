@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { RegistrationRequest } from './request/registration.request';
+import { TicketsComponent } from './tickets/tickets.component';
 import { TravelFoundComponent } from './travel-found/travel-found.component';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { TripsComponent } from './trips/trips.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
     {path: 'trips', component: TripsComponent},
     {path: 'details/:id', component:TripDetailsComponent},
     {path: 'user-trips', component: UserTripsComponent}
-  ]}
+  ]},
+  {path: 'tickets', component:TicketsComponent}
 ];
 
 @NgModule({

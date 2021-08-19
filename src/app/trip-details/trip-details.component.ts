@@ -32,7 +32,6 @@ export class TripDetailsComponent implements OnInit {
   public allSeats: SeatDTO[];
   constructor(private router: ActivatedRoute, 
               private tripService:TripService, 
-              private cityService: CityService,
               private bookinService: BookingService,
               private fb: FormBuilder) {
     router.params.subscribe(
@@ -43,35 +42,18 @@ export class TripDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // if(this.tripId != null && typeof this.tripId == "number"){
-    //   this.getTripById();
-    // }else{
-    //   window.location.href = "/";
-      
-    // }
     this.initSeatForm();
     this.findTripByCityId();
-    this.findCityById();
-  }
-
-  private findCityById(){
-    this.cityService.getCityById(this.cityId).subscribe(
-      res=>{
-        this.city = res;
-      }
-    );
   }
 
   private findTripByCityId(){
     this.tripService.findTripByCityId(this.cityId).subscribe(
       res => {
-        console.log(res);
-        //&& x.bookings.find(booking => booking.city.direction.directionFrom === this.city.direction.directionFrom) != null
-        res.seats.map(x=>x.checked = x.bookings.length != 0);
+        res.seats.map(x=>x.checked = x.tickets.length != 0);
         res.seats.map(x=>x.addedToCard = false);
         this.allSeats = res.seats;
-        this.seatFirstPart = this.allSeats.slice(0, (res.seats.length/2) + 1);
-        this.seatSecondPart = this.allSeats.slice(res.seats.length/2);  
+        this.seatFirstPart = this.allSeats.slice(0, (res.seats.length/2));
+        this.seatSecondPart = this.allSeats.slice(res.seats.length/2); 
         this.trip = res;
         this.city = res.cities.filter(city => city.id === this.cityId)[0];
       });
@@ -142,18 +124,26 @@ export class TripDetailsComponent implements OnInit {
 
   public buySeats(){
     let bookings: Booking[] = [];
+    this.initBookings(bookings);
+    this.bookinService.bookPlaces(bookings, this.cityId).subscribe(
+      res=>{
+        let seats = this.allSeats.filter(x => this.seats.value.find(s => s.seat.id === x.id) != null);
+        seats.forEach(seat => {
+          seat.checked = true;
+          seat.addedToCard = false;
+        });
+        this.initSeatForm();
+      }
+    );
+  }
+
+  private initBookings(bookings: Booking[]):void{
     this.seats.value.forEach(seat => {
       let booking = new Booking();
       booking.id = null;
       booking.city = null; 
       bookings.push(Object.assign(booking, seat));
     });
-    this.bookinService.bookPlaces(bookings, this.cityId).subscribe(
-      res=>{
-        console.log("OK");
-        
-      }
-    );
   }
   // public sendSeats(){
   //   this.seatService.addUserToSeat(this.seatsToBuy, this.trip).subscribe(
