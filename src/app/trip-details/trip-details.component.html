@@ -1,5 +1,6 @@
 <section>
     <div class="container">
+         <h3>{{trip?.cities[0].direction.directionFrom}} - {{trip?.cities[0].direction.directionTo}}</h3>
        <div class="bus-container">
           <div class="places">
              <label class="seat__box" *ngFor="let seat of seatFirstPart; let i = index">

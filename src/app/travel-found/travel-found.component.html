@@ -1,9 +1,13 @@
-<div *ngIf="trips != null">
+<div *ngIf="trips != null && trips.length != 0; else notFound">
     <div *ngFor="let trip of trips">
         <!-- <h3>{{trip.bus.busName}}</h3> -->
         <h4>{{trip.direction.directionFrom}} - {{trip.direction.directionTo}}</h4>   
         <h4>Price: {{trip.price}}</h4> 
         <!-- <h4>Free seats: {{trip.numberOfSeats}}</h4> -->
-        <a routerLink="../trip/details/{{trip.id}}">Take it</a>
+        <a routerLink="../trip/details/{{trip.id}}" (click)="sendDirection(trip.direction.directionFrom, trip.direction.directionTo, trip.direction.distance)">Take it</a>
     </div>
 </div>
+
+<ng-template #notFound>
+    <h2>Trips not found</h2>
+</ng-template>

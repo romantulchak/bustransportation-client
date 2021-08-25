@@ -1,4 +1,5 @@
 import { BookingDTO } from "./booking.dto";
+import { CityDTO } from "./city.dto";
 import { SeatDTO } from "./seat.dto";
 
 export class TicketDTO{
@@ -8,4 +9,5 @@ export class TicketDTO{
     public email: string;
     public seat: SeatDTO;
     public booking: BookingDTO;
+    public city: CityDTO;
 }

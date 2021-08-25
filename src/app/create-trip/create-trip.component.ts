@@ -50,57 +50,45 @@ export class CreateTripComponent implements OnInit {
         bus: [null, Validators.required],
         numberOfSeats: [0, Validators.required],
         name: ['', Validators.required],
-        dateStart: ['', Validators.required],
-        departureCity: ['', Validators.required],
         tripType: [TripType[TripType.REGULAR], Validators.required],
-        cities: this.formBuilder.array([]),
+        stops: this.formBuilder.array([]),
         tripTemplates: null,
         creator: null
     });
   }
 
   public addIntermediatePlace(){
-    this.cities.push(this.formBuilder.group({
-      direction: this.formBuilder.group({
-        directionFrom: [this.tripForm.get('departureCity').value, Validators.required],
-        directionTo: ['', Validators.required],
-        distance: [0, Validators.required]
-      }),
+    this.stops.push(this.formBuilder.group({
+      name: ['', Validators.required],
       price: [0, Validators.required],
-      dateOfDeparture: [this.tripForm.get('dateStart').value, Validators.required],
-      dateOfArrival: [new Date(), Validators.required],
+      departure: [new Date(), Validators.required],
       isBusStop: [true, Validators.required],
       street: ['', Validators.required],
-      fromMainCity: ['', Validators.required]
     }))
   }
 
-  public removeIntermediatePlace(index: number){
-    this.cities.removeAt(index);
+  public removeIntermediatePlace(index: number): void{
+    this.stops.removeAt(index);
   }
 
-  get bus(){
+  get bus(): BusDTO{
     return this.tripForm.get('bus').value;;
   }
 
-  get directionFrom(){
-    return this.tripForm.get('directionFrom').value;
-  }
-
-  get directionTo(){
-    return this.tripForm.get('directionTo').value;
+  public name(index: number): string{
+    return this.stops.value[index].name;
   }
 
   get price(){
     return this.tripForm.get('price').value;
   }
 
-  get cities(): FormArray{
-    return this.tripForm.get('cities') as FormArray;
+  public isBusStop(index: number): boolean{
+    return this.stops.value[index].isBusStop;
   }
 
-  get direction(){
-    return this.tripForm.get('direction').value;
+  get stops(): FormArray{
+    return this.tripForm.get('stops') as FormArray;
   }
 
   set numberOfSeats(numberOfSeats: number){

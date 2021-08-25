@@ -1,11 +1,9 @@
-import { CityDTO } from "./city.dto";
 import { SeatDTO } from "./seat.dto";
+import { TicketDTO } from "./ticket.dto";
 
 export class BookingDTO{
     public id: number;
-    public city: CityDTO;
     public seat: SeatDTO;
-    public firstName: string;
-    public lastName: string;
-    public email: string;
+    public tickets: TicketDTO[];
+    public totalNumberOfSeats: number;
 }

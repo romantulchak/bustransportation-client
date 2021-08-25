@@ -1,12 +1,11 @@
-import { Directive } from "@angular/core";
-import { Trip } from "./trip.model";
+import {Trip} from './trip.model';
 
-export class City{
-    public id: number;
-    public direction: Directive;
-    public price: number;
-    public trip: Trip;
-    public dateOfDeparture: Date;
-    public dateOfArrival: Date;
-    public isBusStop: boolean;
+export class City {
+  public id: number;
+  public price: number;
+  public trip: Trip;
+  public dateOfArrival: Date;
+  public isBusStop: boolean;
+  public directionTo: string;
+  public directionFrom: string;
 }
