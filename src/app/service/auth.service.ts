@@ -22,4 +22,7 @@ export class AuthService {
     return this.http.post(API_URL + 'auth/registration', registrationRequest);
   }
 
+  public activateAccount(token: string): Observable<boolean>{
+    return this.http.get<boolean>(`${API_URL}auth/verify/${token}`);
+}
 }

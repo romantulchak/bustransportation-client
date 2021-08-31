@@ -1,0 +1,115 @@
+$inputBtnWidth: 43px;
+
+::ng-deep {
+  .registration__dialog {
+    .mat-dialog-container {
+      padding: 0;
+      border: 1px solid #8B8071;
+      box-sizing: border-box;
+      border-radius: 15px;
+      position: relative;
+    }
+  }
+}
+
+.registration__section {
+  width: 870px;
+  height: 500px;
+  font-family: Raleway;
+
+  .register__close_btn {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    outline: none;
+  }
+
+  .registration__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 450px;
+
+    .registration__left_side {
+      height: 100%;
+      align-content: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      flex-direction: column;
+
+      .registration__title {
+        color: #5d7692;
+        font-weight: 600;
+        margin-top: 45px;
+      }
+
+      .registration__advantages {
+        list-style-type: none;
+        font-family: Raleway;
+        font-weight: 600;
+
+        li {
+          font-size: 18px;
+          line-height: 1.9;
+        }
+      }
+
+      .registration__way {
+        height: 113px
+      }
+    }
+
+    .registration__right_side {
+      align-self: center;
+      justify-self: center;
+
+      .registration__form {
+        max-width: 260px;
+
+        .registration__multi_box{
+          display: flex;
+          gap: 15px;
+          text-align: center;
+        }
+
+        .registration__input_label {
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+          width: 260px;
+
+          label {
+            margin-bottom: 4px;
+            font-weight: 500;
+            color: #2F3947;
+            margin: 8px 0 4px 0;
+          }
+
+          input {
+            width: 100%;
+            height: $inputBtnWidth;
+            background: #FAEEC057;
+            border: 1px solid #827B723D;
+            box-sizing: border-box;
+            border-radius: 3px;
+          }
+        }
+
+        .register__btn {
+          width: 100%;
+          margin-top: 27px;
+          background: #BA0345;
+          height: $inputBtnWidth;
+          box-shadow: 0px 5px 24px 1px #FFD699;
+          border-radius: 3px;
+          border: none;
+          color: #fff;
+          box-sizing: border-box;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CityDTO} from '../dto/city.dto';
+import { RouteDTO } from '../dto/route.dto';
 import {Direction} from '../model/direction.model';
+import { Route } from '../model/route.model';
 import {BookingService} from '../service/booking.service';
 import {CityService} from '../service/city.service';
+import { RouteService } from '../service/route.service';
 
 @Component({
   selector: 'app-travel-found',
@@ -12,9 +15,9 @@ import {CityService} from '../service/city.service';
 })
 export class TravelFoundComponent implements OnInit {
 
-  public trips: CityDTO[];
+  public routes: RouteDTO[];
 
-  constructor(private cityService: CityService,
+  constructor(private routeService: RouteService,
               private bookingService: BookingService,
               private router: Router) {
   }
@@ -24,9 +27,9 @@ export class TravelFoundComponent implements OnInit {
   }
 
   public getFoundTrips() {
-    this.cityService.trips.subscribe(
+    this.routeService.routes.subscribe(
       res => {
-        this.trips = res;
+        this.routes = res;
         if (res === null || res === undefined) {
           this.router.navigateByUrl('/');
         }

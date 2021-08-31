@@ -2,11 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CityDTO} from '../dto/city.dto';
+import { RouteDTO } from '../dto/route.dto';
 import {SeatDTO} from '../dto/seat.dto';
 import {TripDTO} from '../dto/trip.dto';
 import {Booking} from '../model/booking.model';
 import {Direction} from '../model/direction.model';
 import {BookingService} from '../service/booking.service';
+import { RouteService } from '../service/route.service';
 
 import {TripService} from '../service/trip.service';
 
@@ -17,9 +19,9 @@ import {TripService} from '../service/trip.service';
 })
 export class TripDetailsComponent implements OnInit {
 
-  private cityId: number;
+  private routeId: number;
   private city: CityDTO;
-  public trip: TripDTO;
+  public route: RouteDTO;
   public seatFirstPart: SeatDTO[] = [];
   public seatSecondPart: SeatDTO[] = [];
   private direction: Direction;
@@ -29,36 +31,33 @@ export class TripDetailsComponent implements OnInit {
   public allSeats: SeatDTO[];
 
   constructor(private router: ActivatedRoute,
+              private routeService: RouteService,
               private tripService: TripService,
               private bookinService: BookingService,
               private fb: FormBuilder) {
     router.params.subscribe(
       res => {
-        this.cityId = Number.parseInt(res.id);
+        this.routeId = Number.parseInt(res.id);
       }
     );
   }
 
   ngOnInit(): void {
     this.initSeatForm();
-    this.findTripByCityId();
+    this.findRouteDetailsById();
     this.getDirection();
   }
 
-  private findTripByCityId(): void{
-    this.tripService.findTripByCityId(this.cityId).subscribe(
-      res => {
-        // res.seats.map(x=>x.checked = x.tickets.length != 0 && res.cities[0].direction.directionTo === this.direction.directionTo && res.cities[0].direction.directionFrom === this.direction.directionFrom);
-        //TODO: change res.cities[0].direction.distance < this.direction.distance to anything else
-        // res.seats.map(x=>x.checked = (x.tickets.length != 0 && res.cities[0].direction.distance < this.direction.distance));
-        res.seats.map(x => x.checked = x.tickets.find(t => t.city.direction.directionFrom === this.direction.directionFrom) != null);
-        res.seats.map(x => x.addedToCard = false);
+  private findRouteDetailsById(){
+    this.routeService.getRouteDetailsById(this.routeId).subscribe(
+      res=>{
+        console.log(res);
         this.allSeats = res.seats;
         this.seatFirstPart = this.allSeats.slice(0, (res.seats.length / 2));
         this.seatSecondPart = this.allSeats.slice(res.seats.length / 2);
-        this.trip = res;
-        this.city = res.cities.filter(city => city.id === this.cityId)[0];
-      });
+        this.route = res.route;
+      }
+    );
   }
 
   public initSeatForm(): void{
@@ -100,24 +99,6 @@ export class TripDetailsComponent implements OnInit {
     );
   }
 
-  // private getTripById(){
-  //   this.tripService.getTripById(this.tripId).subscribe(
-  //     res=>{
-  //       if(res != null){
-  //         // if(this.tripValid(new Date(res.date))){
-  //
-
-  //           this.trip = res;
-  //           this.seatFirstPart = res.seats.slice(0, (res.seats.length/2) + 1);
-  //           this.seatSecondPart = res.seats.slice(res.seats.length/2);
-  //         }else{
-  //           window.location.href = "/";
-  //         }
-
-  //       }
-  //     // }
-  //   );
-  // }
 
   private tripValid(date: Date): boolean {
     const currentDate = new Date();
@@ -137,11 +118,12 @@ export class TripDetailsComponent implements OnInit {
   public buySeats(): void {
     let bookings: Booking[] = [];
     this.initBookings(bookings);
-    this.bookinService.bookPlaces(bookings, this.cityId).subscribe(
+    this.bookinService.bookPlaces(bookings, this.routeId).subscribe(
       res => {
+        
         const seats = this.allSeats.filter(x => this.seats.value.find(s => s.seat.id === x.id) != null);
         seats.forEach(seat => {
-          seat.checked = true;
+          seat.isBooked = true;
           seat.addedToCard = false;
         });
         this.initSeatForm();
@@ -158,18 +140,4 @@ export class TripDetailsComponent implements OnInit {
     });
   }
 
-  // public sendSeats(){
-  //   this.seatService.addUserToSeat(this.seatsToBuy, this.trip).subscribe(
-  //     res=>{
-  //       this.seatsToBuy.map(x=>x.checked = true);
-  //       this.seatsToBuy = [];
-  //       this.success = true;
-
-  //     },
-  //     error=>{
-  //       console.log("Seats with number: " + error.error.message.length + " not available");
-
-  //     }
-  //   );
-  // }
 }

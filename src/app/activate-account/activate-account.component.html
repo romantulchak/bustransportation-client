@@ -1,0 +1,13 @@
+<section>
+
+    <div *ngIf="isActivated">
+        <h2>Account has been activated</h2>
+        <a [routerLink]="'login'">Go to login page</a>
+    </div>
+    
+    <div *ngIf="!isActivated">
+        <h2>Invalid token</h2>
+    </div>
+
+
+</section>

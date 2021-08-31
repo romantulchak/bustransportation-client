@@ -7,6 +7,7 @@ export class SeatDTO{
     public seatNumber: number;
     public users: UserDTO[];
     public checked?:boolean = false;
+    public isBooked: boolean = false;
     public addedToCard: boolean = false;
     public tickets: TicketDTO[];
 }

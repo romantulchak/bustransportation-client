@@ -4,4 +4,6 @@ export class CityStop{
     public isBusStop: boolean;
     public street: string;
     public price: number;
+    public busStopNumber: number;
+
 }

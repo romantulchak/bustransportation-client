@@ -1,72 +1,93 @@
-<section>
-  <h3>Create trip</h3>
+<section class="create__trip">
   <form action="" [formGroup]="tripForm">
-    <div>
-      <label for="bus">Select bus</label>
-      <select formControlName="bus" name="bus" id="bus">
-        <option></option>
-        <option *ngFor="let bus of buses" [ngValue]="bus">{{bus.name}}</option>
-      </select>
-    </div>
-
-    <div>
-      <label for="name">Name</label>
-      <input type="text" formControlName="name" id="name" required>
-    </div>
-    <div *ngIf="bus != null">
-      <label for="numberOfSeats">Number of Seats</label>
-      <input type="number" formControlName="numberOfSeats" id="numberOfSeats" [(ngModel)]="bus.numberOfSeats" required>
-    </div>
-    <div>
-      <label for="tripType">Trip type</label>
-      <select name="tripType" id="tripType" formControlName="tripType">
-        <option [value]="'REGULAR'">REGULAR</option>
-        <option [value]="'IRREGULAR'">IRREGULAR</option>
-      </select>
-    </div>
-
-    <div [formArrayName]="'stops'">
-      <h3>Intermediate Places</h3>
-      <div class="intermediate__places">
-        <ng-container
-          *ngFor="let intermediatePlace of stops.controls;let i = index; let last = last; let first = first">
-          <div [formGroupName]="i">
-            <div class="intermediate__place_card">
-              <h3 *ngIf="first">From {{name(i)}}</h3>
-              <h3 *ngIf="last && stops.length >= 2">To {{name(i)}}</h3>
-
-              <div>
-                <label for="name-{{i}">City</label>
-                <input type="text" id="name-{{i}" formControlName="name" required>
-              </div>
-              <div>
-                <label for="departure-{{i}}">Date of departure</label>
-                <input type="datetime-local" id="departure-{{i}}" required formControlName="departure">
-              </div>
-              <div *ngIf="!first">
-                <label for="price-{{i}}">Price</label>
-                <input type="number" id="price-{{i}}" formControlName="price" required>
-              </div>
-              <div>
-                <label for="street-{{i}}">Street</label>
-                <input type="text" formControlName="street" id="street-{{i}}" required>
-              </div>
-              <div>
-                <label for="isBusStop-{{i}}">Bus stop</label>
-                <input type="checkbox" formControlName="isBusStop" [attr.disabled]="first || last ? '' : null"
-                       [checked]="isBusStop(i)" id="isBusStop-{{i}}">
-              </div>
-              <h2>{{first}}</h2>
-              <button (click)="removeIntermediatePlace(i)">Remove</button>
-            </div>
-          </div>
-        </ng-container>
+    <div class="form__grid">
+      <div class="trip__form">
+        <div>
+          <label for="bus">Select bus</label>
+          <select formControlName="bus" name="bus" id="bus">
+            <option></option>
+            <option *ngFor="let bus of buses" [ngValue]="bus">{{bus.name}}</option>
+          </select>
+        </div>
+        <div>
+          <h3>Trip name</h3>
+          <h4 *ngIf="stops.controls.length > 1">{{getName(0)}} - {{getName(stops.controls.length - 1)}}</h4>
+        </div>
+        <div *ngIf="bus != null">
+          <label for="numberOfSeats">Number of Seats</label>
+          <input type="number" formControlName="numberOfSeats" id="numberOfSeats" [(ngModel)]="bus.numberOfSeats" required>
+        </div>
+        <div>
+          <label for="tripType">Trip type</label>
+          <select name="tripType" id="tripType" formControlName="tripType">
+            <option [value]="'REGULAR'">REGULAR</option>
+            <option [value]="'IRREGULAR'">IRREGULAR</option>
+          </select>
+        </div>
+        <button title="{{stops.length < 2 ? 'Number of stops less than 2' : 'Create'}}" [disabled]="stops.length < 2"
+        (click)="create()">Create
+        </button>
       </div>
-      <button (click)="addIntermediatePlace()">Add</button>
+      <div class="trip__stops" [formArrayName]="'stops'">
+        <div class="intermediate__places">
+          <ng-container *ngIf="stops.controls.length != 0">
+            <div cdkDropList cdkDropListOrientation="vertical" class="example-list" (cdkDropListDropped)="drop($event)">
+              <div class="example-box" *ngFor="let intermediatePlace of stops.controls;let i = index; let last = last; let first = first">
+              <div class="intermediate__place_card" [formGroupName]="i">
+                <div class="timeline">
+                  <ng-container>
+                    <div class="timeline__component">
+                      <div class="timeline__date timeline__date--right">{{getDepartureDate(i) | date:'d MMMM y, h:mm'}}</div>
+                    </div>
+                    <div class="timeline__middle">
+                      <div class="timeline__point"></div>
+                    </div>
+                    <div [id]="i" cdkDrag #elem="cdkDrag" (mouseenter)="enter(i)" class="timeline__component timeline__component--bg">
+                      <div cdkDragHandle class="move__icon_block">
+                        <img class="move__icon" src="../../assets/images/icons/move.svg" alt="move">
+                      </div>
+                      <h2 class="timeline__title">Bus stop - {{i}}</h2>
+                      <div class="timeline_paragraph">
+                        <h3 *ngIf="first">From {{getName(i)}}</h3>
+                        <h3 *ngIf="last && stops.length >= 2">To {{getName(i)}}</h3>
+                        <div>
+                          <label for="name-{{i}}">City</label>
+                          <input type="text" id="name-{{i}" formControlName="name" required>
+                        </div>
+                        <div>
+                          <label for="departure-{{i}}">Date of departure</label>
+                          <input type="datetime-local" [min]="getDepartureDate(0) " id="departure-{{i}}" required formControlName="departure">
+                        </div>
+                        <div *ngIf="!first && isBusStop(i)">
+                          <label for="price-{{i}}">Price</label>
+                          <input type="number" id="price-{{i}}" formControlName="price" required>
+                        </div>
+                        <div>
+                          <label for="street-{{i}}">Street</label>
+                          <input type="text" formControlName="street" id="street-{{i}}" required>
+                        </div>
+                        <div>
+                          <label for="isBusStop-{{i}}">Bus stop</label>
+                          <input type="checkbox" formControlName="isBusStop" [attr.disabled]="first || last ? '' : null"
+                                 [checked]="isBusStop(i)" id="isBusStop-{{i}}">
+                        </div>
+                        <button (click)="removeIntermediatePlace(i)">Remove</button>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            </div>
+          </ng-container>
+         
+        </div>
+        <div class="add__bus_stop-btn">
+          <button (click)="addIntermediatePlace()">Add bus stop</button>
+        </div>
+      </div>
     </div>
-    <button title="{{stops.length < 2 ? 'Number of stops less than 2' : 'Create'}}" [disabled]="stops.length < 2"
-            (click)="create()">Create
-    </button>
   </form>
-  <pre>{{tripForm.value | json}}</pre>
 </section>
+
+<pre>{{tripForm.value | json}}</pre>

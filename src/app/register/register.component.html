@@ -1,19 +1,49 @@
-<section>
-    <div>
-        <form>
-            <div>
-                <label for="username">Username</label>
-                <input type="text" id="username" [(ngModel)]="registrationRequest.username"> 
+<section class="registration__section">
+    <button class="register__close_btn" [mat-dialog-close]="true">
+        <img src="../../assets/images/icons/close.svg" alt="close">
+    </button>
+    <div class="registration__grid">
+        <div class="registration__left_side">
+            <div class="registration__title">
+                <h2>Registration</h2>
             </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" [(ngModel)]="registrationRequest.email"> 
+            <ul class="registration__advantages">
+                <li><img src="../../assets/images/icons/checkmark.svg" alt="checkmark"> Redeem a booked ticket</li>
+                <li><img src="../../assets/images/icons/checkmark.svg" alt="checkmark"> View trip details</li>
+                <li><img src="../../assets/images/icons/checkmark.svg" alt="checkmark"> Download purchased ticket</li>
+                <li><img src="../../assets/images/icons/checkmark.svg" alt="checkmark"> Return ticket</li>
+                <li><img src="../../assets/images/icons/checkmark.svg" alt="checkmark"> Leave a review about the trip</li>
+            </ul>
+            <div class="registration__way">
+                <img src="../../assets/images/icons/registration-way.svg" alt="registration-way">
             </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="password" [(ngModel)]="registrationRequest.password"> 
-            </div>
-            <button (click)="registration()">Register</button>
-        </form>
+        </div>
+        <div class="registration__right_side">
+            <form class="registration__form">
+                <div class="registration__multi_box">
+                    <div class="registration__input_label">
+                        <label for="firstName">First name</label>
+                        <input type="text" id="firstName" [(ngModel)]="registrationRequest.firstName"> 
+                    </div>
+                    <div class="registration__input_label">
+                        <label for="lastName">Last name</label>
+                        <input type="text" id="lastName" [(ngModel)]="registrationRequest.lastName"> 
+                    </div>
+                </div>
+                <div class="registration__input_label">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" [(ngModel)]="registrationRequest.username"> 
+                </div>
+                <div class="registration__input_label">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" [(ngModel)]="registrationRequest.email"> 
+                </div>
+                <div class="registration__input_label">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" [(ngModel)]="registrationRequest.password"> 
+                </div>
+                <button class="register__btn" (click)="registration()">Register</button>
+            </form>
+        </div>
     </div>
 </section>

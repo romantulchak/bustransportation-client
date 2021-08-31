@@ -11,8 +11,6 @@ const API_URL = environment.API_URL;
 })
 export class CityService {
 
-  public trips: BehaviorSubject<CityDTO[]> = new BehaviorSubject(null);
-
   constructor(private http: HttpClient) { }
 
   public getCitiesForTrip(tripId: number):Observable<CityDTO[]>{

@@ -1,17 +1,17 @@
 <section>
     <div class="container">
-         <h3>{{trip?.cities[0].direction.directionFrom}} - {{trip?.cities[0].direction.directionTo}}</h3>
+         <h3>{{route?.departureFrom}} - {{route?.arrivalTo}}</h3>
        <div class="bus-container">
           <div class="places">
              <label class="seat__box" *ngFor="let seat of seatFirstPart; let i = index">
-             <input type="checkbox" (change)="addSeat(seat, i)" [disabled]="seat.checked" [checked]="seat.addedToCard">
-             <span class="checkmark" [class.booked]="seat.checked">{{seat.seatNumber}}</span>
+             <input type="checkbox" (change)="addSeat(seat, i)" [disabled]="seat.isBooked" [checked]="seat.addedToCard">
+             <span class="checkmark" [class.booked]="seat.isBooked">{{seat.seatNumber}}</span>
              </label>
           </div>
           <div class="places">
              <label class="seat__box" *ngFor="let seat of seatSecondPart; let i = index">
-             <input type="checkbox" (change)="addSeat(seat, i)" [disabled]="seat.checked" [checked]="seat.addedToCard">
-             <span class="checkmark"  [class.booked]="seat.checked">{{seat.seatNumber}}</span>
+             <input type="checkbox" (change)="addSeat(seat, i)" [disabled]="seat.isBooked" [checked]="seat.addedToCard">
+             <span class="checkmark"  [class.booked]="seat.isBooked">{{seat.seatNumber}}</span>
              </label>
           </div>
        </div>

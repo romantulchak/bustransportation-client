@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { TripDTO } from "../dto/trip.dto";
+import { Route } from "../model/route.model";
 import { Trip } from "../model/trip.model";
 
 const API_URL = environment.API_URL;

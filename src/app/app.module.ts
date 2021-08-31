@@ -23,6 +23,10 @@ import { HeaderComponent } from './header/header.component';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import { TravelFoundComponent } from './travel-found/travel-found.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatDialogModule} from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivateAccountComponent } from './activate-account/activate-account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +45,7 @@ import { TicketsComponent } from './tickets/tickets.component';
     HeaderComponent,
     TravelFoundComponent,
     TicketsComponent,
+    ActivateAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,10 @@ import { TicketsComponent } from './tickets/tickets.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    DpDatePickerModule
+    DpDatePickerModule,
+    DragDropModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

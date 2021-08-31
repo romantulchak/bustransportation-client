@@ -11,8 +11,8 @@
         </a>
       </li>
       <ng-container *ngIf="showAuthLinks === null || showAuthLinks === undefined;else profile">
-        <li><a routerLink="login" class="link__icon"><span>Login</span></a></li>
-        <li><a routerLink="registration" class="link__icon"><span>Registration</span></a></li>
+        <li><a (click)="login()" class="link__icon"><span>Login</span></a></li>
+        <li><a (click)="registration()" class="link__icon"><span>Registration</span></a></li>
       </ng-container>
       <ng-template #profile>
         <li>
