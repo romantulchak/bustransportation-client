@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { TripDTO } from "../dto/trip.dto";
 import { Route } from "../model/route.model";
 import { Trip } from "../model/trip.model";
+import { TripTemplate } from "../model/tripTemplate.model";
 
 const API_URL = environment.API_URL;
 @Injectable({

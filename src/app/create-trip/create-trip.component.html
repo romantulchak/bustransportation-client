@@ -3,12 +3,24 @@
     <div class="form__grid">
       <div class="trip__form">
         <div>
+          <h3>Select from templates</h3>
+          <select  [(ngModel)]="selectedTemplate" name="tripTemplates" id="tripTemplates" (ngModelChange)="getStopsForTripTemplate($event)">
+            <option value=""></option>
+            <option *ngFor="let tripTemplate of tripTemplates" [ngValue]="tripTemplate">{{tripTemplate.name}}</option>
+          </select>
+        </div>
+
+        <div *ngIf="buses.length > 0;else createBusLink">
           <label for="bus">Select bus</label>
           <select formControlName="bus" name="bus" id="bus">
             <option></option>
             <option *ngFor="let bus of buses" [ngValue]="bus">{{bus.name}}</option>
           </select>
         </div>
+        <ng-template #createBusLink>
+          <h3>Create bus</h3>
+          <a [routerLink]="'../../buses'">Link</a>
+        </ng-template>
         <div>
           <h3>Trip name</h3>
           <h4 *ngIf="stops.controls.length > 1">{{getName(0)}} - {{getName(stops.controls.length - 1)}}</h4>
@@ -20,13 +32,29 @@
         <div>
           <label for="tripType">Trip type</label>
           <select name="tripType" id="tripType" formControlName="tripType">
-            <option [value]="'REGULAR'">REGULAR</option>
             <option [value]="'IRREGULAR'">IRREGULAR</option>
+            <option [value]="'REGULAR'">REGULAR</option>
           </select>
         </div>
-        <button title="{{stops.length < 2 ? 'Number of stops less than 2' : 'Create'}}" [disabled]="stops.length < 2"
+          <div *ngIf="getTripType === tripType[tripType.REGULAR]">
+            <div>
+                <label for="dateFrom">Date started</label>
+                <input type="date" formControlName="dateStart" [min]="currentDate">
+            </div>
+            <div>
+              <label for="dateFrom">Date ended</label>
+              <input type="date" formControlName="dateEnded" [min]="currentDate">
+            </div>
+          </div>
+
+        <button title="{{stops.length < 2 ? 'Number of stops less than 2' : 'Create'}}" *ngIf="buses.length > 0" [disabled]="stops.length < 2"
         (click)="create()">Create
         </button>
+
+        <div>
+          <input type="text" name="tripTemplateName" id="tripTemaplteName" value="" #templateName>
+          <button (click)="saveTemplate(templateName.value)">Save template</button>
+        </div>
       </div>
       <div class="trip__stops" [formArrayName]="'stops'">
         <div class="intermediate__places">
@@ -52,7 +80,7 @@
                         <h3 *ngIf="last && stops.length >= 2">To {{getName(i)}}</h3>
                         <div>
                           <label for="name-{{i}}">City</label>
-                          <input type="text" id="name-{{i}" formControlName="name" required>
+                          <input type="text" id="name-{{i}}" formControlName="name" required>
                         </div>
                         <div>
                           <label for="departure-{{i}}">Date of departure</label>

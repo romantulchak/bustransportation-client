@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ErrorCode } from '../model/enum/errorCode.enum';
+import { Error } from '../model/error.model';
 import { LoginRequest } from '../request/login.request';
 import { AuthService } from '../service/auth.service';
 import { TokenStorageService } from '../service/token-storage.service';
@@ -11,6 +13,9 @@ import { TokenStorageService } from '../service/token-storage.service';
 export class LoginComponent implements OnInit {
 
   public loginRequest: LoginRequest = new LoginRequest();
+  public errorMessage: Error;
+  public errorMessages: string[];
+  public errorEnum = ErrorCode;
 
   constructor(private authService: AuthService,
               private tokenStorageService: TokenStorageService) { }
@@ -24,8 +29,28 @@ export class LoginComponent implements OnInit {
         this.tokenStorageService.saveToken(res.token);
         this.tokenStorageService.saveUser(res);
         window.location.href = "/";
+      },
+      error=>{
+        this.errorMessages = null;
+        if(error.error.errorCode === undefined){
+          this.errorHandel(error.error);
+        }else{
+          this.errorMessage = error.error;
+        }
       }
     );
+  }
+
+  public reSendActivationEmail(){
+    this.authService.reSendActivationEmail(this.loginRequest.username).subscribe(
+      res=>{
+        console.log("Sended");
+      }
+    );
+  }
+
+  private errorHandel(error: any){
+    this.errorMessages = Object.values(error);
   }
 
 }

@@ -24,5 +24,9 @@ export class AuthService {
 
   public activateAccount(token: string): Observable<boolean>{
     return this.http.get<boolean>(`${API_URL}auth/verify/${token}`);
-}
+  }
+
+  public reSendActivationEmail(username: string){
+    return this.http.get(`${API_URL}auth/re-activate-account/${username}`);
+  }
 }

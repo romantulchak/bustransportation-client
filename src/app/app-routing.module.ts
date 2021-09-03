@@ -17,8 +17,6 @@ import { UserTripsComponent } from './user-trips/user-trips.component';
 const routes: Routes = [
   {path:'', component: MainComponent},
   {path:'buses', component: BusesComponent},
-  // {path: 'login', component: LoginComponent, canActivate: [LoginRegisterGuard]},
-  // {path: 'registration', component: RegisterComponent, canActivate: [LoginRegisterGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard]},
   {path: 'trips-found', component: TravelFoundComponent},
   {path: 'trip', children:[

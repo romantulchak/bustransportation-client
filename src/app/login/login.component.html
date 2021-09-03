@@ -1,6 +1,15 @@
 <section>
     <div>
         <form>
+            <div class="error" *ngIf="errorMessage != null">
+                <h3>{{errorMessage.message}}</h3>
+                <button *ngIf="errorMessage.errorCode == this.errorEnum['USER_DISABLED']" (click)="reSendActivationEmail()">Activate account</button>
+            </div>
+            <div *ngIf="errorMessages != null">
+                <ul>
+                    <li *ngFor="let message of errorMessages">{{message}}</li>
+                </ul>
+            </div>
             <div>
                 <label for="username">Username</label>
                 <input type="text" id="username" [(ngModel)]="loginRequest.username"> 
