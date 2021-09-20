@@ -65,6 +65,7 @@ export class CreateTripComponent implements OnInit {
     this.numberOfSeats = this.bus.numberOfSeats;
     this.setBusStopNumber();
     this.setTripName();
+    this.stops.value[0].price = 0;
     this.tripService.createTrip(this.getTripFromForm()).subscribe(
       res=>{
         console.log(res);
@@ -79,8 +80,7 @@ export class CreateTripComponent implements OnInit {
 
   private setBusStopNumber(){
     this.stops.value.map(stop => stop.busStopNumber = this.busStopNumber++);
-    console.log(this.stops.value);
-    
+    this.busStopNumber = 0;
   }
 
   private setTripName(){
@@ -162,6 +162,9 @@ export class CreateTripComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
+    if(event.currentIndex === 0){
+        this.stops.value[event.previousIndex].price = 0;
+    }
     moveItemInArray(this.stops.controls, event.previousIndex, event.currentIndex);
     moveItemInArray(this.stops.value, event.previousIndex, event.currentIndex);
   }
@@ -192,12 +195,9 @@ export class CreateTripComponent implements OnInit {
     this.tripTemplateService.getStopsForTipTemplate(tripTemplate.id).subscribe(
       res=>{
         tripTemplate.stops = res;
-        console.log(tripTemplate);
         let tripName = `${tripTemplate.stops[0]} - ${tripTemplate.stops[tripTemplate.stops.length-1]}`; 
         let bus = this.buses.find(b => b.id == tripTemplate.bus.id);
         this.initForm(bus, bus.numberOfSeats, tripName, tripTemplate.tripType);
-        console.log(this.stops);
-        
         tripTemplate.stops.forEach(stop =>{
           this.stops.push(this.initIntermidiatePlace(stop.name, stop.price, stop.departure, stop.isBusStop, stop.street, stop.busStopNumber));
         });

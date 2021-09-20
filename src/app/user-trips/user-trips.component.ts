@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CityDTO } from '../dto/city.dto';
 import { TripDTO } from '../dto/trip.dto';
 import { CityService } from '../service/city.service';
+import { TripTemplateService } from '../service/trip-template.service';
 import { TripService } from '../service/trip.service';
 
 @Component({
@@ -14,29 +15,37 @@ export class UserTripsComponent implements OnInit {
   public trips: TripDTO[];
   public currentTripId: number;
   public currentTrip: TripDTO = new TripDTO(); 
-  constructor(private tripService: TripService,
-              private cityService: CityService) { }
+  public currentPage = 0;
+  constructor(private tripService: TripService) { }
 
   ngOnInit(): void {
     this.getTripsForUser();
   }
 
   private getTripsForUser(){
-    this.tripService.getTripsForUser().subscribe(
+    this.tripService.getTripsForUser(this.currentPage).subscribe(
       res=>{
-        this.trips = res;        
+        this.trips = res.model;        
       }
     );
   }
 
   public showCities(trip: TripDTO){
-    this.cityService.getCitiesForTrip(trip.id).subscribe(
+    this.tripService.getTripStopsByTripId(trip.id).subscribe(
       res=>{
         this.currentTripId = trip.id;
         this.currentTrip = trip;
-        this.currentTrip.cities = res;
+        this.currentTrip.stops = res;
+        
       }
     );
   }
 
+  public preDelete(id: number){
+    this.tripService.preDeleteTrip(id).subscribe(
+      res=>{
+        console.log("ok");
+      }
+    );
+  }
 }

@@ -13,6 +13,7 @@ export class Trip {
   public tripType: string;
   public creator: User;
   public stops: CityStop[];
+  public removeType: string;
 
   constructor(id?: number) {
     this.id = id;
