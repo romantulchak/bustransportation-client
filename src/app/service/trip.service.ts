@@ -25,8 +25,8 @@ export class TripService{
         return this.http.post<TripDTO>(API_URL + 'trip/createTrip', trip);
     }
 
-    public getTripsForUser(page: number):Observable<PagableDTO<TripDTO[]>>{
-        return this.http.get<PagableDTO<TripDTO[]>>(`${API_URL}trip/tripsForUser/${page}`);
+    public getTripsForUser(page: number):Observable<PagableDTO<TripDTO>>{
+        return this.http.get<PagableDTO<TripDTO>>(`${API_URL}trip/tripsForUser/${page}`);
     }
 
     public getTripById(id: number):Observable<Trip>{
@@ -43,5 +43,17 @@ export class TripService{
 
     public preDeleteTrip(id: number):Observable<any>{
         return this.http.put(`${API_URL}trip/pre-delete/${id}`, null);
+    }
+
+    public getPreDeletedTrips(page: number): Observable<PagableDTO<TripDTO>>{
+        return this.http.get<PagableDTO<TripDTO>>(`${API_URL}trip/pre-deleted-trips/${page}`);
+    }
+    
+    public fullDeleteTrip(id: number):Observable<any>{
+        return this.http.delete(`${API_URL}trip/full-delete/${id}`);
+    }
+    
+    public getCountPreDeletedTrips():Observable<number>{
+        return this.http.get<number>(API_URL + 'trip/count-pre-deleted-trips');
     }
 }

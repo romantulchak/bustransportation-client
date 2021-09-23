@@ -5,5 +5,5 @@ export class PagableDTO<T>{
     public totalPages: number;
     public totalElements: number;
     public currentPage: number;
-    public model: T;
+    public model: T[];
 }

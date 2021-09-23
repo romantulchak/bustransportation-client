@@ -1,0 +1,27 @@
+.trash {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  bottom: 45px;
+  right: 45px;
+
+  .counter {
+    position: absolute;
+    right: 14px;
+    top: 12px;
+    background: #fff;
+    width: 14px;
+    text-align: cel;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 19px;
+    z-index: -5;
+}
+
+  img {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+  }
+}

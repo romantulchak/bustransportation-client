@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CityDTO } from '../dto/city.dto';
+import { MatDialog } from '@angular/material/dialog';
 import { TripDTO } from '../dto/trip.dto';
-import { CityService } from '../service/city.service';
-import { TripTemplateService } from '../service/trip-template.service';
+import { RemovedTripsDialogComponent } from '../removed-trips-dialog/removed-trips-dialog.component';
 import { TripService } from '../service/trip.service';
 
 @Component({
@@ -13,39 +12,39 @@ import { TripService } from '../service/trip.service';
 export class UserTripsComponent implements OnInit {
 
   public trips: TripDTO[];
-  public currentTripId: number;
-  public currentTrip: TripDTO = new TripDTO(); 
   public currentPage = 0;
-  constructor(private tripService: TripService) { }
+  public countPreDeletedTrips: number = 0;
+  constructor(private tripService: TripService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getTripsForUser();
+    this.getCountPreDeletedTrips();
   }
 
   private getTripsForUser(){
     this.tripService.getTripsForUser(this.currentPage).subscribe(
       res=>{
+        console.log(res);
         this.trips = res.model;        
       }
     );
   }
 
-  public showCities(trip: TripDTO){
-    this.tripService.getTripStopsByTripId(trip.id).subscribe(
+  public openRemovedTrips(){
+    this.dialog.open(RemovedTripsDialogComponent);
+  }
+
+  public getCountPreDeletedTrips(){
+    this.tripService.getCountPreDeletedTrips().subscribe(
       res=>{
-        this.currentTripId = trip.id;
-        this.currentTrip = trip;
-        this.currentTrip.stops = res;
-        
+        this.countPreDeletedTrips = res;
       }
     );
   }
 
-  public preDelete(id: number){
-    this.tripService.preDeleteTrip(id).subscribe(
-      res=>{
-        console.log("ok");
-      }
-    );
+  public preRemoveUpdateCounter(trip: TripDTO){
+    this.countPreDeletedTrips++;
+    this.trips = this.trips.filter(t => t.id !== trip.id);
   }
 }

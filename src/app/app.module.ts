@@ -27,6 +27,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivateAccountComponent } from './activate-account/activate-account.component';
+import { TripCardComponent } from './trip-card/trip-card.component';
+import { RemovedTripsDialogComponent } from './removed-trips-dialog/removed-trips-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +48,8 @@ import { ActivateAccountComponent } from './activate-account/activate-account.co
     TravelFoundComponent,
     TicketsComponent,
     ActivateAccountComponent,
+    TripCardComponent,
+    RemovedTripsDialogComponent,
   ],
   imports: [
     BrowserModule,

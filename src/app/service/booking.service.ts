@@ -23,10 +23,10 @@ export class BookingService {
     return this.http.post<any>(`${API_URL}booking/bookPlaces/${cityId}`, bookings);
   }
 
-  public getUserTickets(): Observable<PagableDTO<BookingDTO[]>> {
+  public getUserTickets(): Observable<PagableDTO<BookingDTO>> {
     let params = new HttpParams();
     params = params.append('page', 0)
       .append('size', 5);
-    return this.http.get<PagableDTO<BookingDTO[]>>(API_URL + 'booking/findUserBooking', {params: params});
+    return this.http.get<PagableDTO<BookingDTO>>(API_URL + 'booking/findUserBooking', {params: params});
   }
 }

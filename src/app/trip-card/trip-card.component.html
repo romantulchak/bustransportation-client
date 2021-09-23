@@ -1,0 +1,19 @@
+<section>
+    <div>
+      <h3>Trips created by me</h3>
+      <div>
+        <div class="trip__card" *ngFor="let trip of trips">
+          <h3>{{trip.name}}</h3>
+          <em>{{trip.dateStart | date: 'dd-MM-yyyy HH:mm'}} - {{trip.dateEnd | date: 'dd-MM-yyyy HH:mm'}}</em>
+          <div>
+            <button (click)="showCities(trip)">Show cities</button>
+            <app-trip-city-line *ngIf="currentTrip.stops != null && currentTripId == trip.id" [trip]="currentTrip">
+            </app-trip-city-line>
+            <button *ngIf="trip.removeType === removeType[removeType.SAVED]" (click)="preDelete(trip)">Pre remove</button>
+            <button (click)="fullDelete(trip.id)">Full remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
