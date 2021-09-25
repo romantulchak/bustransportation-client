@@ -17,12 +17,23 @@ export class RemovedTripsDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPreDeletedTrips();
+    this.restoreTrip();
   }
 
   private getPreDeletedTrips() {
     this.tripService.getPreDeletedTrips(this.currentPage).subscribe(
       res=>{
         this.trips = res.model;
+      }
+    );
+  }
+
+  private restoreTrip(){
+    this.tripService.restoreTripSubject.subscribe(
+      res=>{
+        if(res != null){
+          this.trips = this.trips.filter(t => t.id !== res.id);
+        }
       }
     );
   }

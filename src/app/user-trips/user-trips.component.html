@@ -4,4 +4,7 @@
       <span class="counter">{{countPreDeletedTrips}}</span>
       <img (click)="openRemovedTrips()" src="../../assets/images/icons/trash.svg" alt="">
   </div>
+
+  <app-pagination (changePage)="getTripsForUser($event)"></app-pagination>
+
 </div>

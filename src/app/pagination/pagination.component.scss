@@ -1,0 +1,25 @@
+.pagination__list{
+    list-style-type: none;
+    display: flex;
+    height: 30px;
+    align-items: center;
+
+    li{
+        flex: 0 1 20px;
+        padding: 4px;
+        transition: .5s;
+        text-align: center;
+    }
+    .dots{
+        flex: 0 1 10px;
+    }
+
+    .active{
+        background: #ba0345;
+        border-radius: 50px;
+        
+        span{
+            color: #fff;
+        }
+    }
+}

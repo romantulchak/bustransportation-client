@@ -48,4 +48,12 @@ export class TripCardComponent implements OnInit {
       }
     );
   }
+
+  public restoreTrip(trip: TripDTO){
+    this.tripService.restoreTrip(trip.id).subscribe(
+      res=>{
+        this.tripService.restoreTripSubject.next(res);
+      }
+    );
+  }
 }

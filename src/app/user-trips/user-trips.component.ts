@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TripDTO } from '../dto/trip.dto';
 import { RemovedTripsDialogComponent } from '../removed-trips-dialog/removed-trips-dialog.component';
+import { PageableService } from '../service/pageable.service';
 import { TripService } from '../service/trip.service';
 
 @Component({
@@ -12,21 +13,26 @@ import { TripService } from '../service/trip.service';
 export class UserTripsComponent implements OnInit {
 
   public trips: TripDTO[];
-  public currentPage = 0;
-  public countPreDeletedTrips: number = 0;
+  public currentPage = 1;
+  public countPreDeletedTrips: number;
   constructor(private tripService: TripService,
+              private pageableService: PageableService,
               private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getTripsForUser();
+    this.getTripsForUser(this.currentPage);
     this.getCountPreDeletedTrips();
+    this.restoreTrip();
   }
 
-  private getTripsForUser(){
-    this.tripService.getTripsForUser(this.currentPage).subscribe(
+  public getTripsForUser(page: number){
+    console.log(page);
+    
+    this.tripService.getTripsForUser(page).subscribe(
       res=>{
-        console.log(res);
         this.trips = res.model;        
+        this.currentPage = res.currentPage;
+        this.pageableService.pageableModel.next(res);
       }
     );
   }
@@ -46,5 +52,16 @@ export class UserTripsComponent implements OnInit {
   public preRemoveUpdateCounter(trip: TripDTO){
     this.countPreDeletedTrips++;
     this.trips = this.trips.filter(t => t.id !== trip.id);
+  }
+
+  private restoreTrip(){
+    this.tripService.restoreTripSubject.subscribe(
+      res=>{
+        if(res != null){
+          this.countPreDeletedTrips--;
+          this.trips.unshift(res);
+        }
+      }
+    );
   }
 }

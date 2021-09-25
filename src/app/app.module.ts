@@ -29,6 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivateAccountComponent } from './activate-account/activate-account.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
 import { RemovedTripsDialogComponent } from './removed-trips-dialog/removed-trips-dialog.component';
+import { PaginationComponent } from './pagination/pagination.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,8 @@ import { RemovedTripsDialogComponent } from './removed-trips-dialog/removed-trip
     ActivateAccountComponent,
     TripCardComponent,
     RemovedTripsDialogComponent,
+    PaginationComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,7 @@ import { RemovedTripsDialogComponent } from './removed-trips-dialog/removed-trip
     DpDatePickerModule,
     DragDropModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

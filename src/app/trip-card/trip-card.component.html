@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="trips != null">
     <div>
       <h3>Trips created by me</h3>
       <div>
@@ -10,6 +10,7 @@
             <app-trip-city-line *ngIf="currentTrip.stops != null && currentTripId == trip.id" [trip]="currentTrip">
             </app-trip-city-line>
             <button *ngIf="trip.removeType === removeType[removeType.SAVED]" (click)="preDelete(trip)">Pre remove</button>
+            <button *ngIf="trip.removeType === removeType[removeType.PRE_REMOVE]" (click)="restoreTrip(trip)">Restore</button>
             <button (click)="fullDelete(trip.id)">Full remove</button>
           </div>
         </div>

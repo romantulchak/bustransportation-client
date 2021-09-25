@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { PagableDTO } from "../dto/pageable.dto";
 import { TripDTO } from "../dto/trip.dto";
@@ -14,8 +14,11 @@ const API_URL = environment.API_URL;
     providedIn:'root'
 })
 export class TripService{
-    constructor(private http: HttpClient){
 
+
+    public restoreTripSubject: BehaviorSubject<TripDTO> = new BehaviorSubject(null);
+
+    constructor(private http: HttpClient){
     }
 
     public getTrips():Observable<TripDTO[]>{
@@ -55,5 +58,9 @@ export class TripService{
     
     public getCountPreDeletedTrips():Observable<number>{
         return this.http.get<number>(API_URL + 'trip/count-pre-deleted-trips');
+    }
+
+    public restoreTrip(id: number): Observable<TripDTO>{
+        return this.http.put<TripDTO>(`${API_URL}trip/restore-trip/${id}`, null);
     }
 }
