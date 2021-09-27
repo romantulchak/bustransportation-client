@@ -1,4 +1,5 @@
 <div class="container">
+
   <app-trip-card [trips]="trips" (preRemove)="preRemoveUpdateCounter($event)"></app-trip-card>
   <div class="trash">
       <span class="counter">{{countPreDeletedTrips}}</span>

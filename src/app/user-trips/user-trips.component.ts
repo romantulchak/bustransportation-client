@@ -26,8 +26,6 @@ export class UserTripsComponent implements OnInit {
   }
 
   public getTripsForUser(page: number){
-    console.log(page);
-    
     this.tripService.getTripsForUser(page).subscribe(
       res=>{
         this.trips = res.model;        

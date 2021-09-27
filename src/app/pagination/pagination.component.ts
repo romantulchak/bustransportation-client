@@ -52,7 +52,8 @@ export class PaginationComponent implements OnInit {
     currentPage = totalPages; 
   }
 
-  let startPage: number, endPage: number;
+  let startPage: number;
+  let endPage: number;
   if (totalPages <= this.maxPages) {
     startPage = 1;
     endPage = totalPages;

@@ -1,6 +1,6 @@
 <div *ngIf="pageable != null">
     <ul class="pagination__list" *ngIf="pager.pages && pager.pages.length">
-        <li *ngIf="pager.currentPage > 1" (click)="setPage(pager.currentPage - 1)"><img src="../../assets/images/icons/left-arrow.svg" alt="left-arrow"></li>
+        <li (click)="setPage(pager.currentPage - 1)"><img *ngIf="pager.currentPage > 1" src="../../assets/images/icons/left-arrow.svg" alt="left-arrow"></li>
         <ng-container *ngIf="isShowFirstPage">
             <li [class.active]="pager.currentPage === 1" (click)="setPage(1)">1</li>
             <li class="dots">...</li>
@@ -12,6 +12,6 @@
             <li class="dots">...</li>
             <li [class.active]="pager.currentPage === pager.endPage" (click)="setPage(pager.totalPages)">{{pager.totalPages}}</li>
         </ng-container>
-        <li *ngIf="pager.currentPage != pager.totalPages" (click)="setPage(pager.currentPage + 1)"><img src="../../assets/images/icons/right-arrow.svg" alt="right-arrow"></li>
+        <li (click)="setPage(pager.currentPage + 1)"><img *ngIf="pager.currentPage != pager.totalPages"  src="../../assets/images/icons/right-arrow.svg" alt="right-arrow"></li>
     </ul>
 </div>

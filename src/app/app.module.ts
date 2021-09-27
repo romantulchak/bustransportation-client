@@ -30,6 +30,9 @@ import { ActivateAccountComponent } from './activate-account/activate-account.co
 import { TripCardComponent } from './trip-card/trip-card.component';
 import { RemovedTripsDialogComponent } from './removed-trips-dialog/removed-trips-dialog.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { BreadcrumbMenuComponent } from './breadcrumb-menu/breadcrumb-menu.component';
+import { DeleteTripsStatisticComponent } from './delete-trips-statistic/delete-trips-statistic.component';
+import { UserTripsMenuComponent } from './user-trips-menu/user-trips-menu.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,9 @@ import { PaginationComponent } from './pagination/pagination.component';
     TripCardComponent,
     RemovedTripsDialogComponent,
     PaginationComponent,
-    
+    BreadcrumbMenuComponent,
+    DeleteTripsStatisticComponent,
+    UserTripsMenuComponent,
   ],
   imports: [
     BrowserModule,

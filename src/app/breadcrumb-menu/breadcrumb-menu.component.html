@@ -1,0 +1,7 @@
+<h1>TEST</h1>
+<ul class="breadcumb__list">
+    <li *ngFor="let breadcrumb of breadcrumbs; let last = last">
+        <a [routerLinkActiveOptions]={exact:true} routerLinkActive="active" class="breadcrumb__link" routerLink="../../{{breadcrumb.url}}">{{breadcrumb.label}}</a>
+        <span class="breadcrumb__slash" *ngIf="!last">/</span>
+    </li>
+</ul>

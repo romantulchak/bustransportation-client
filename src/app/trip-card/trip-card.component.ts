@@ -36,7 +36,6 @@ export class TripCardComponent implements OnInit {
     this.tripService.preDeleteTrip(trip.id).subscribe(
       res=>{
         this.preRemove.emit(trip);
-        console.log("ok");
       }
     );
   }
@@ -44,7 +43,7 @@ export class TripCardComponent implements OnInit {
   public fullDelete(id: number){
     this.tripService.fullDeleteTrip(id).subscribe(
       res=>{
-        console.log(res);
+        this.trips = this.trips.filter(trip => trip.id !== id);
       }
     );
   }

@@ -1,0 +1,20 @@
+.breadcumb__list{
+    display: flex;
+    list-style-type: none;
+    text-transform: uppercase;
+
+    li{
+        font-size: 18px;
+        .breadcrumb__link{
+            color: #000;
+            text-decoration: none;
+        }
+
+        .active{
+            color: #ba0345;
+        }
+        .breadcrumb__slash{
+            margin: 0 10px 0 10px;
+        }
+    }
+}

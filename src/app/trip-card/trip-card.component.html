@@ -1,6 +1,5 @@
 <section *ngIf="trips != null">
     <div>
-      <h3>Trips created by me</h3>
       <div>
         <div class="trip__card" *ngFor="let trip of trips">
           <h3>{{trip.name}}</h3>
