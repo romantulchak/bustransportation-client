@@ -1,1 +1,11 @@
-<p>delete-trips-statistic works!</p>
+<div>
+    <div *ngFor="let deleteTrip of deletedTrips">
+        <h3>{{deleteTrip.name}}</h3>
+        <em>{{deleteTrip.removeDate | date: 'dd-MM-yyyy HH:mm'}}</em>
+        <div>
+            <button (click)="showAditionalInformation(deleteTrip.id)">Show additional information</button>
+        </div>
+        <app-trip-city-line *ngIf="stops != null && currentDeleteTrip == deleteTrip.id" [stops]="stops"></app-trip-city-line>
+    </div>
+</div>
+<app-pagination (changePage)="getFullStatistics($event)"></app-pagination>

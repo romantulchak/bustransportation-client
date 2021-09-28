@@ -19,6 +19,9 @@ const routes: Routes = [
   {path:'buses', component: BusesComponent},
   {path: 'profile', data:{breadcrumb:"Profile"}, canActivate: [ProfileGuard], children:[
       {path: '', component: ProfileComponent},
+      {path: 'tickets', data:{breadcrumb: "Tickets"}, children:[
+        {path:'', data:{breadcrumb: null}, component:TicketsComponent}
+      ]},
       {path: 'trip', data:{breadcrumb: null}, component: TripsComponent, children:[
         {path: 'create-trip', data:{breadcrumb: "Create Trip"}, component: CreateTripComponent},
         {path: 'trips', data:{breadcrumb: "Trips"}, component: TripsComponent},
@@ -32,7 +35,6 @@ const routes: Routes = [
   ]},
   {path: 'trips-found', component: TravelFoundComponent},
  
-  {path: 'tickets', component:TicketsComponent},
   {path: 'register/verify', component: ActivateAccountComponent }
 ];
 

@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {environment} from 'src/environments/environment';
 import {BookingDTO} from '../dto/booking.dto';
-import {PagableDTO} from '../dto/pageable.dto';
+import {PageableDTO} from '../dto/pageable.dto';
 import {Booking} from '../model/booking.model';
 import {Direction} from '../model/direction.model';
 
@@ -23,10 +23,10 @@ export class BookingService {
     return this.http.post<any>(`${API_URL}booking/bookPlaces/${cityId}`, bookings);
   }
 
-  public getUserTickets(): Observable<PagableDTO<BookingDTO>> {
+  public getUserTickets(): Observable<PageableDTO<BookingDTO>> {
     let params = new HttpParams();
     params = params.append('page', 0)
       .append('size', 5);
-    return this.http.get<PagableDTO<BookingDTO>>(API_URL + 'booking/findUserBooking', {params: params});
+    return this.http.get<PageableDTO<BookingDTO>>(API_URL + 'booking/findUserBooking', {params: params});
   }
 }

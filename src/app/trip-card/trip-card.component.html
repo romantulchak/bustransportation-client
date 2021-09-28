@@ -6,8 +6,7 @@
           <em>{{trip.dateStart | date: 'dd-MM-yyyy HH:mm'}} - {{trip.dateEnd | date: 'dd-MM-yyyy HH:mm'}}</em>
           <div>
             <button (click)="showCities(trip)">Show cities</button>
-            <app-trip-city-line *ngIf="currentTrip.stops != null && currentTripId == trip.id" [trip]="currentTrip">
-            </app-trip-city-line>
+            <app-trip-city-line *ngIf="stops != null && currentTripId == trip.id" [stops]="stops"></app-trip-city-line>
             <button *ngIf="trip.removeType === removeType[removeType.SAVED]" (click)="preDelete(trip)">Pre remove</button>
             <button *ngIf="trip.removeType === removeType[removeType.PRE_REMOVE]" (click)="restoreTrip(trip)">Restore</button>
             <button (click)="fullDelete(trip.id)">Full remove</button>

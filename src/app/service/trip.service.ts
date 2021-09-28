@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { PagableDTO } from "../dto/pageable.dto";
+import { PageableDTO } from "../dto/pageable.dto";
 import { TripDTO } from "../dto/trip.dto";
 import { CityStop } from "../model/cityStop.model";
 import { Route } from "../model/route.model";
@@ -28,8 +28,8 @@ export class TripService{
         return this.http.post<TripDTO>(API_URL + 'trip/createTrip', trip);
     }
 
-    public getTripsForUser(page: number):Observable<PagableDTO<TripDTO>>{
-        return this.http.get<PagableDTO<TripDTO>>(`${API_URL}trip/tripsForUser/${page}`);
+    public getTripsForUser(page: number):Observable<PageableDTO<TripDTO>>{
+        return this.http.get<PageableDTO<TripDTO>>(`${API_URL}trip/tripsForUser/${page}`);
     }
 
     public getTripById(id: number):Observable<Trip>{
@@ -48,8 +48,8 @@ export class TripService{
         return this.http.put(`${API_URL}trip/pre-delete/${id}`, null);
     }
 
-    public getPreDeletedTrips(page: number): Observable<PagableDTO<TripDTO>>{
-        return this.http.get<PagableDTO<TripDTO>>(`${API_URL}trip/pre-deleted-trips/${page}`);
+    public getPreDeletedTrips(page: number): Observable<PageableDTO<TripDTO>>{
+        return this.http.get<PageableDTO<TripDTO>>(`${API_URL}trip/pre-deleted-trips/${page}`);
     }
     
     public fullDeleteTrip(id: number):Observable<any>{

@@ -1,15 +1,14 @@
 <section class="create__trip">
+  <div>
+    <h3>Select from templates</h3>
+    <select  [(ngModel)]="selectedTemplate" name="tripTemplates" id="tripTemplates" (ngModelChange)="getStopsForTripTemplate($event)">
+      <option value=""></option>
+      <option *ngFor="let tripTemplate of tripTemplates" [ngValue]="tripTemplate">{{tripTemplate.name}}</option>
+    </select>
+  </div>
   <form action="" [formGroup]="tripForm">
     <div class="form__grid">
       <div class="trip__form">
-        <div>
-          <h3>Select from templates</h3>
-          <select  [(ngModel)]="selectedTemplate" name="tripTemplates" id="tripTemplates" (ngModelChange)="getStopsForTripTemplate($event)">
-            <option value=""></option>
-            <option *ngFor="let tripTemplate of tripTemplates" [ngValue]="tripTemplate">{{tripTemplate.name}}</option>
-          </select>
-        </div>
-
         <div *ngIf="buses.length > 0;else createBusLink">
           <label for="bus">Select bus</label>
           <select formControlName="bus" name="bus" id="bus">

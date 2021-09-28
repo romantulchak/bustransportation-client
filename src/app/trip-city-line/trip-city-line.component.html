@@ -1,6 +1,6 @@
-    <div class="wrapper">
+    <div class="wrapper" *ngIf="stops != null">
       <ul class="sessions">
-        <li *ngFor="let stop of trip.stops">
+        <li *ngFor="let stop of stops">
           <div class="time">{{stop.departure | date: 'dd-MM-yyyy HH:mm'}}</div>
           <p>{{stop.name}}</p>
         </li>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { PagableDTO } from '../dto/pageable.dto';
+import { PageableDTO } from '../dto/pageable.dto';
 import { Pagination } from '../model/pagination.model';
 import { PageableService } from '../service/pageable.service';
 
@@ -12,7 +12,7 @@ export class PaginationComponent implements OnInit {
 
   @Output("changePage") changePageEvent: EventEmitter<number> = new EventEmitter();
 
-  public pageable: PagableDTO<any>;
+  public pageable: PageableDTO<any>;
   public isShowLastPage: boolean = true;
   public isShowFirstPage: boolean = true;
   public pager: Pagination;

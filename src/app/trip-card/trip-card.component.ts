@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TripDTO } from '../dto/trip.dto';
+import { CityStop } from '../model/cityStop.model';
 import { RemoveType } from '../model/enum/removeType.enum';
 import { TripService } from '../service/trip.service';
 
@@ -15,6 +16,7 @@ export class TripCardComponent implements OnInit {
   public removeType = RemoveType;
   public currentTripId: number;
   public currentTrip: TripDTO = new TripDTO(); 
+  public stops: CityStop[];
   
   constructor(private tripService: TripService) { }
 
@@ -27,7 +29,7 @@ export class TripCardComponent implements OnInit {
       res=>{
         this.currentTripId = trip.id;
         this.currentTrip = trip;
-        this.currentTrip.stops = res;
+        this.stops = res;
       }
     );
   }
